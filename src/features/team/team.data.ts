@@ -1,4 +1,77 @@
-import brayan from "../../assets/brayan.jpg";
+import type Member from "./team.types";
+
+
+
+import { Brayan } from "./teambiography/BrayanCardona/main";
+import { Carolina } from "./teambiography/CarolinaCastañeda/main";
+import { Mauricio } from "./teambiography/MauricioCaroGutierrez/main";
+import { JoseSosa } from "./teambiography/JoseSosa/main";
+import { Rina } from "./teambiography/RinaPlata/main";
+import { Mariana } from "./teambiography/MarianaCastañeda/main";
+import { Valentina } from "./teambiography/ValentinaPinzon/main";
+
+import { David } from "./teambiography/DavidOrrego/main";
+import { Shirley } from "./teambiography/ShirleyArango/main";
+
+
+
+
+export const TEAM: Member[] = [
+  Brayan,
+  Carolina,
+  Mauricio,
+  JoseSosa,
+  Rina,
+  Mariana,
+  Valentina,
+  David,
+  Shirley
+
+
+
+];
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*import brayan from "../../assets/brayan.jpg";
 import caro from "../../assets/Carolina.jpg";
 import david from "../../assets/david.jpg";
 import mariana from "../../assets/mariana.jpg";
@@ -106,3 +179,4 @@ export const TEAM: Member[] = [
     bio: "Apoya iniciativas de redes sociales y comunidad.",
   },
 ];
+*/
