@@ -1,29 +1,21 @@
-import brayan from "../../assets/brayan.jpeg";
-import caro from "../../assets/caro.jpeg";
-import david from "../../assets/david.jpeg";
-import mariana from "../../assets/mariana.jpeg";
-import jose from "../../assets/jose.jpeg";
-import kaky from "../../assets/kaky.jpeg";
-import rina from "../../assets/rina.jpeg";
-import shirley from "../../assets/shirley.jpeg";
-import valen from "../../assets/valen.jpeg";
-
-export type Member = {
-  name: string;
-  role: string;
-  photo: string;
-  linkedin?: string;
-  instagram?: string;
-};
+import type Member from "./team.types";
+export type { default as Member } from "./team.types";
+import { Brayan } from "./teambiography/BrayanCardona/main";
+import { Carolina } from "./teambiography/CarolinaCastañeda/main";
+import { Mauricio } from "./teambiography/MauricioCaroGutierrez/main";
+import { JoseSosa } from "./teambiography/JoseSosa/main";
+import { Rina } from "./teambiography/RinaPlata/main";
+import { Mariana } from "./teambiography/MarianaCastañeda/main";
+import { Valentina } from "./teambiography/ValentinaPinzon/main";
+import { Shirley } from "./teambiography/ShirleyArango/main";
 
 export const TEAM: Member[] = [
-  { name: "Brayan",    role: "Backend Engineer",  photo: brayan },
-  { name: "Shirley",   role: "Product Designer",  photo: shirley },
-  { name: "Rina",      role: "Frontend Engineer", photo: rina },
-  { name: "Kaky",      role: "Product Manager",   photo: kaky },
-  { name: "David",     role: "DevOps / Cloud",    photo: david },
-  { name: "Mariana",   role: "Community Lead",    photo: mariana },
-  { name: "José",      role: "Mobile Developer",  photo: jose },
-  { name: "Valentina", role: "Software Engineer", photo: valen },
-  { name: "Carolina",  role: "Data Engineer",     photo: caro },
+  Carolina,
+  Mauricio,
+  Valentina,
+  Shirley,
+  Brayan,
+  JoseSosa,
+  Rina,
+  Mariana,
 ];
