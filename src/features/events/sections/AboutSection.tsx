@@ -63,8 +63,6 @@ export default function AboutSection() {
             </a>
           </div>
         </div>
-
-        {/* Nuevo Reel con modal de eventos */}
         <EventReel events={EVENTS} />
       </div>
     </Section>

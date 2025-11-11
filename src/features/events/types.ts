@@ -5,7 +5,7 @@ export type MediaItem =
 export type EventMeta = {
   id: string;
   title: string;
-  dateISO: string;            // "2025-09-12"
+  dateISO: string;
   venue?: string;
   city?: string;
   tags?: string[];
@@ -14,5 +14,5 @@ export type EventMeta = {
   media: MediaItem[];
   speakers?: { name: string; role?: string; avatar?: string; link?: string }[];
   resources?: { slides?: string; repo?: string; recap?: string };
-  stats?: { attendees?: number; satisfaction?: number }; // opcional
+  stats?: { attendees?: number; satisfaction?: number };
 };

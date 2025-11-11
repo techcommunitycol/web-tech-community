@@ -12,7 +12,6 @@ export default function Modal({ isOpen, onClose, titleId = "modal-title", childr
   const overlayRef = useRef<HTMLDivElement | null>(null);
   const contentRef = useRef<HTMLDivElement | null>(null);
 
-  // bloquear scroll del body cuando el modal esté abierto
   useEffect(() => {
     if (!isOpen) return;
     const original = document.body.style.overflow;
@@ -20,7 +19,6 @@ export default function Modal({ isOpen, onClose, titleId = "modal-title", childr
     return () => { document.body.style.overflow = original; };
   }, [isOpen]);
 
-  // cerrar con ESC
   useEffect(() => {
     if (!isOpen) return;
     const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
@@ -28,7 +26,6 @@ export default function Modal({ isOpen, onClose, titleId = "modal-title", childr
     return () => window.removeEventListener("keydown", onKey);
   }, [isOpen, onClose]);
 
-  // focus trap mínimo
   useEffect(() => {
     if (!isOpen || !contentRef.current) return;
     const focusable = contentRef.current.querySelectorAll<HTMLElement>(

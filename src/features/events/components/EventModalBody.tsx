@@ -4,7 +4,6 @@ import EventGallery from "./EventGallery";
 export default function EventModalBody({ evt }: { evt: EventMeta }) {
   return (
     <>
-      {/* Encabezado */}
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div className="min-w-0">
           <h3 id="event-modal-title" className="text-xl font-semibold text-white">
@@ -40,13 +39,9 @@ export default function EventModalBody({ evt }: { evt: EventMeta }) {
           </div>
         )}
       </div>
-
-      {/* Galería */}
       <div className="mt-5">
         <EventGallery media={evt.media} />
       </div>
-
-      {/* Descripción */}
       <div className="mt-6 grid gap-6 md:grid-cols-3">
         <div className="md:col-span-2">
           <h4 className="text-sm font-semibold text-slate-200">Descripción</h4>
@@ -54,8 +49,6 @@ export default function EventModalBody({ evt }: { evt: EventMeta }) {
             {evt.descLong || evt.descShort}
           </p>
         </div>
-
-        {/* Speakers / Recursos */}
         <div className="space-y-5">
           {evt.speakers && evt.speakers.length > 0 && (
             <div>

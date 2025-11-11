@@ -12,7 +12,6 @@ export default function EventGallery({ media }: { media: MediaItem[] }) {
   const onNext = () => setIndex((i) => safeIndex(i + 1));
   const active = media[index];
 
-  // navegación con teclado
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "ArrowLeft") onPrev();
@@ -58,7 +57,6 @@ export default function EventGallery({ media }: { media: MediaItem[] }) {
           <video className="h-full w-full" src={active.src} controls preload="none" />
         ) : null}
 
-        {/* Controles */}
         {total > 1 && (
           <>
             <button
