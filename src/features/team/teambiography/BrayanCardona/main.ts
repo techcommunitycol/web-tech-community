@@ -1,5 +1,5 @@
 import type Member from "../../team.types";
-import eldevbrayan from "../../../../assets/brayan.jpg";
+import eldevbrayan from "../../../../assets/crew/brayan.jpg";
 
 export const Brayan: Member = {
   name: "Brayan Cardona",

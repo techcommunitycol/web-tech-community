@@ -1,5 +1,5 @@
 import type Member from "../../team.types";
-import valentina from "../../../../assets/Valen.png";
+import valentina from "../../../../assets/crew/Valen.png";
 
 export const Valentina: Member = {
   name: "Valentina Pinzón",

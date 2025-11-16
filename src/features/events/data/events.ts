@@ -1,12 +1,12 @@
 import type { EventMeta } from "../types";
 
-import img1 from "../../../assets/imgEvent1.jpeg";
-import img2 from "../../../assets/imgEvent2.jpeg";
-import img3 from "../../../assets/imgEvent3.jpeg";
-import img4 from "../../../assets/imgEvent4.jpeg";
-import img5 from "../../../assets/imgEvent5.jpeg";
-import img6 from "../../../assets/imgEvent6.jpeg";
-import img7 from "../../../assets/imgEvent7.jpeg";
+import img1 from "../../../assets/events/imgEvent1.jpeg";
+import img2 from "../../../assets/events/imgEvent2.jpeg";
+import img3 from "../../../assets/events/imgEvent3.jpeg";
+import img4 from "../../../assets/events/imgEvent4.jpeg";
+import img5 from "../../../assets/events/imgEvent5.jpeg";
+import img6 from "../../../assets/events/imgEvent6.jpeg";
+import img7 from "../../../assets/events/imgEvent7.jpeg";
 
 export const EVENTS: EventMeta[] = [
   {
