@@ -3,4 +3,5 @@ export const NAV_LINKS = [
   { label: "Qué hacemos", href: "#what-we-do" },
   { label: "Comunidades aliadas", href: "#allies" },
   { label: "Equipo", href: "#team" },
+  { label: "Agenda", href: "#calendar" },
 ];
