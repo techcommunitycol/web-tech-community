@@ -1,4 +1,4 @@
-import type { CalendarEvent } from "./CalendarComponentes";
+import type { CalendarEvent } from "./CalendarComponents";
 
 export const EVENTS: CalendarEvent[] = [
   {
@@ -18,7 +18,7 @@ export const EVENTS: CalendarEvent[] = [
     id: "2",
     title: "Intercambio de idiomas",
     date: "2025-11-14",
-    location: "Remote",
+    location: "Centro Empresarial",
     time: "10:00 AM – 4:00 PM",
     type: "language-exchange",
     owner: "Tech Community",

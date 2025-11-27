@@ -9,7 +9,7 @@ import {
   type CalendarEvent,
   type EventType,
   type FormatoType,
-} from "./CalendarComponentes";
+} from "./CalendarComponents";
 
 interface MonthViewProps {
   currentDate: Date;

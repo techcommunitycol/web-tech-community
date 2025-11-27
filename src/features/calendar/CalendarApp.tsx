@@ -7,7 +7,7 @@ export default function CalendarApp() {
     id="calendar"
     title="Conoce nuestros eventos"
   >
-    <CalendarPage />
+    <CalendarPage/>
   </Section>
   
   );

@@ -1,4 +1,6 @@
 export type EventType = "language-exchange" | "tech" | "others";
+export const FORMATOS = ["Presencial", "Virtual", "Híbrido"] as const;
+export type FormatoType = typeof FORMATOS[number];
 
 export interface CalendarEvent {
   id: string;
@@ -8,15 +10,12 @@ export interface CalendarEvent {
   time?: string;
   type: EventType;
   owner: string;
-  format: "Presencial" | "Virtual" | "Híbrido";  
+  format: FormatoType;
   description?: string;
   url?: string;
 }
 
-export const WEEK_DAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-
-export const FORMATOS = ["Presencial", "Virtual", "Híbrido"] as const;
-export type FormatoType = typeof FORMATOS[number];
+export const WEEK_DAYS = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
 
 export function getEventsForDay(events: CalendarEvent[], date: Date) {
   const iso = date.toISOString().slice(0, 10);

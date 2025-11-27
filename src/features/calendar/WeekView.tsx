@@ -10,7 +10,7 @@ import {
   type CalendarEvent,
   type EventType,
   type FormatoType,
-} from "./CalendarComponentes";
+} from "./CalendarComponents";
 
 interface WeekViewProps {
   currentDate: Date;

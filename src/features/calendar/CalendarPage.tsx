@@ -5,7 +5,7 @@ import {
   type CalendarEvent,
   type EventType,
   type FormatoType,
-} from "./CalendarComponentes";
+} from "./CalendarComponents";
 import { EVENTS } from "./CalendarData";
 import MonthView from "./MonthView";
 import WeekView from "./WeekView";
@@ -16,7 +16,9 @@ import EventModal from "./CalendarEventModal";
 type ViewMode = "month" | "week" | "list";
 
 const CalendarPage: React.FC = () => {
-  const [currentDate, setCurrentDate] = useState(new Date());
+  const [currentDate, setCurrentDate] = useState(
+    new Date(new Date().toLocaleString("en-US", { timeZone: "America/Bogota" }))
+  );  
   const [selectedEvent, setSelectedEvent] = useState<CalendarEvent | null>(null);
   const [viewMode, setViewMode] = useState<ViewMode>("month");
   const [activeTypes, setActiveTypes] = useState<EventType[]>([

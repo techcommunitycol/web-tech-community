@@ -1,12 +1,15 @@
 import React from "react";
-import { type CalendarEvent } from "./CalendarComponentes";
+import { type CalendarEvent } from "./CalendarComponents";
 
 type EventModalProps = {
   event: CalendarEvent;
   onClose: () => void;
 };
 
-const EventModal: React.FC<EventModalProps> = ({ event, onClose }) => {
+const EventModal: React.FC<EventModalProps> = ({ 
+  event, 
+  onClose 
+}) => {
   const handleBackdropClick = () => onClose();
 
   return (

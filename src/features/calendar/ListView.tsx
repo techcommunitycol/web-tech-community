@@ -6,7 +6,7 @@ import {
   type CalendarEvent,
   type EventType,
   type FormatoType,
-} from "./CalendarComponentes";
+} from "./CalendarComponents";
 
 interface ListViewProps {
   today: Date;

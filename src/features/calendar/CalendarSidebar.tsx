@@ -3,7 +3,7 @@ import {
   FORMATOS,
   type EventType,
   type FormatoType,
-} from "./CalendarComponentes";
+} from "./CalendarComponents";
 
 type CalendarSidebarProps = {
   activeTypes: EventType[];
