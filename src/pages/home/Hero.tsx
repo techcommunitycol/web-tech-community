@@ -1,5 +1,3 @@
-
-
 export default function Hero() {
   return (
     <section className="relative overflow-hidden">
@@ -18,7 +16,7 @@ export default function Hero() {
 
           <div className="mt-6">
             <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight">
-              Bienvenidos a <span className="text-brand-500">TechCommunity</span>
+              Bienvenidos a <span className="text-brand-500">Tech Community</span>
             </h1>
           </div>
 

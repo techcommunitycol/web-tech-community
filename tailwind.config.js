@@ -4,20 +4,31 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Azules/teal aproximados a tu imagen
         brand: {
-          50:  "#E6F6FA", // celeste muy claro
-          200: "#A8E1E6", // aqua claro
-          300: "#44C3C6", // teal
-          400: "#0FA3B1", // teal más profundo
-          500: "#7FA1E7", // periwinkle
-          600: "#5B84D8", // azul medio
-          700: "#0A53B5", // azul royal
-          800: "#0A49A5", // azul intenso
-          900: "#083D8A", // azul oscuro
+          // Colores de la marca (primarios teal)
+          primary: {
+            DEFAULT: "#36979C", // núcleo
+            medium:  "#57BFC4", // medio tono
+            pastel: "#BAE5E7",  // pastel
+            soft:   "#CCE9EA",  // tono suave
+          },
+          // Azules secundarios
+          secondary: {
+            DEFAULT: "#36979C", // según el manual repite este teal
+            medium:  "#2B628C",
+            pastel: "#C8D5E0",
+            soft:   "#E4EBF1",
+          },
+          // Escala de grises de la marca
+          gray: {
+            900: "#111111",
+            600: "#5A6063",
+            300: "#B4BBBF",
+            100: "#DCE1E4",
+          },
         },
       },
     },
   },
   plugins: [],
-}
+};

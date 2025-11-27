@@ -14,7 +14,7 @@ export default function AboutSection() {
   return (
     <Section
       id="about"
-      title="¿Qué es TechCommunity?"
+      title="¿Qué es Tech Community?"
       subtitle="Impulsamos el crecimiento en tecnología con enfoque humano y oportunidades reales."
     >
       <div className="relative overflow-hidden rounded-3xl p-[1px] bg-gradient-to-br from-brand-300/40 via-brand-600/40 to-brand-800/40">
