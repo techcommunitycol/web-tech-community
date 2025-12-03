@@ -22,6 +22,27 @@ export const WHAT_WE_DO_ITEMS: WhatWeDoItem[] = [
     }
   },
   {
+    icon: "💬",
+    slug: "intercambios-de-idiomas",
+    title: "Intercambios de idiomas",
+    desc: "Intercambios de idiomas mensuales para aprender juntos y hacer nuevas conexiones.",
+    details: {
+      problem:
+        "Las personas quieren practicar idiomas de forma constante, pero no encuentran espacios seguros, guiados y accesibles.",
+      solution: [
+        "Intercambios de idiomas mensuales con grupos pequeños.",
+        "Mesas organizadas por nivel (básico, intermedio, avanzado) con moderadores.",
+        "Dinámicas guiadas: ice-breakers, role plays y temas de conversación preparados."
+      ],
+      outcomes: [
+        "Mayor confianza y fluidez al hablar en otro idioma.",
+        "Red de contactos internacionales y nuevas amistades.",
+        "Hábito de práctica mensual dentro de una comunidad segura."
+      ],
+      tech: ["WhatsApp", "Google Forms", "Notion", "Canva", "Google Meet / Zoom"]
+    }
+  },
+  {
     icon: "🤝",
     slug: "mentorias-y-paneles",
     title: "Mentorías y paneles",
