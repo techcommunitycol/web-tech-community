@@ -1,14 +1,24 @@
 import type { WhatWeDoItem } from "../types";
+import type { IconType } from "react-icons";
+import { FiCode, FiMessageSquare, FiUsers, FiGlobe } from "react-icons/fi";
 
 type Props = {
   item: WhatWeDoItem;
   onOpen: (item: WhatWeDoItem) => void;
 };
 
+const ICONS: Record<string, IconType> = {
+  "eventos-y-talleres": FiCode,
+  "intercambios-de-idiomas": FiMessageSquare,
+  "mentorias-y-paneles": FiUsers,
+  "alianzas-y-comunidad": FiGlobe,
+};
+
 export default function WhatWeDoCard({ item, onOpen }: Props) {
   const image = item.image;
   const tag = item.tag;
   const tech = item.tech ?? [];
+  const Icon = ICONS[item.slug] ?? FiCode;
 
   return (
     <article className="h-full flex flex-col justify-between rounded-xl border border-gray-700 bg-[rgba(255,255,255,0.02)] p-6 transition transform hover:-translate-y-1 hover:shadow-lg">
@@ -21,13 +31,11 @@ export default function WhatWeDoCard({ item, onOpen }: Props) {
           />
         ) : (
           <div
-            className="h-12 w-12 rounded-full mb-4 grid place-items-center text-primary"
+            className="h-12 w-12 rounded-full mb-4 grid place-items-center"
             style={{ background: "rgba(90,96,99,0.06)" }}
             aria-hidden
           >
-            <span className="text-xl leading-none">
-              {item.icon ?? "•"}
-            </span>
+            <Icon className="h-6 w-6 text-primary" />
           </div>
         )}
 

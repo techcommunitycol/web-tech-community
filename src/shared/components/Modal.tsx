@@ -1,14 +1,14 @@
-import { useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 
 type ModalProps = {
   isOpen: boolean;
   onClose: () => void;
   titleId?: string;
-  children: React.ReactNode;
+  children?: React.ReactNode;
 };
 
-export default function Modal({ isOpen, onClose, titleId = "modal-title", children }: ModalProps) {
+export default function Modal({ isOpen, onClose, titleId, children }: ModalProps) {
   const overlayRef = useRef<HTMLDivElement | null>(null);
   const contentRef = useRef<HTMLDivElement | null>(null);
 
@@ -51,9 +51,9 @@ export default function Modal({ isOpen, onClose, titleId = "modal-title", childr
   if (!isOpen) return null;
 
   return createPortal(
-  <div
+    <div
       ref={overlayRef}
-      className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm px-4"
+      className="fixed inset-0 z-50 flex items-start justify-center px-4 py-12"
       aria-labelledby={titleId}
       role="dialog"
       aria-modal="true"
@@ -62,15 +62,25 @@ export default function Modal({ isOpen, onClose, titleId = "modal-title", childr
       }}
     >
       <div
-        ref={contentRef}
-        className="
-          w-full max-w-3xl
-          rounded-2xl border border-white/10 bg-[#0b1224] p-6 shadow-2xl outline-none
-          max-h-[85vh] overflow-y-auto overscroll-contain
-          [-webkit-overflow-scrolling:touch]
-        "
-      >
-        {children}
+        className="fixed inset-0 bg-black/60 backdrop-blur-sm transition-opacity"
+        onClick={onClose}
+      />
+
+      <div className="relative z-10 w-full max-w-3xl rounded-xl border border-gray-700 bg-gray-900 p-6 shadow-2xl max-h-[90vh] overflow-y-auto">
+        <div className="flex items-start justify-between gap-4">
+          {titleId ? (
+            <h2 id={titleId} className="text-lg font-semibold text-gray-200" />
+          ) : null}
+          <button
+            onClick={onClose}
+            aria-label="Cerrar"
+            className="ml-auto inline-flex items-center rounded-md p-2 text-gray-300 hover:bg-[rgba(255,255,255,0.03)]"
+          >
+            ✕
+          </button>
+        </div>
+
+        <div className="mt-4 text-sm text-gray-300">{children}</div>
       </div>
     </div>,
     document.body
