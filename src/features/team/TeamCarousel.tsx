@@ -117,12 +117,14 @@ export default function TeamCarousel() {
                         {m.name}
                       </h3>
                       <p className="text-[12px] text-white/60">{m.role}</p>
-                      <span className="mt-3 inline-flex items-center gap-1.5 rounded-full bg-white/5 px-3 py-1 text-xs text-white/90 ring-1 ring-white/10 transition-colors group-hover:bg-white/10">
-                        Ver biografía{" "}
+                     <br></br>
+                     <span className="inline-flex items-center gap-2 rounded-xl border border-gray-600 hover:border-primary/30 px-5 py-3 text-sm font-semibold text-gray-200 group">
+                        Ver biografía
                         <span className="transition-transform group-hover:translate-x-0.5">
                           →
                         </span>
                       </span>
+
                     </figcaption>
                   </div>
                 </div>

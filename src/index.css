@@ -1,11 +1,29 @@
 :root{
   --color-primary: #36979C;
   --color-primary-rgba-12: rgba(54,151,156,0.12);
-  --gray-900: #111111; 
+  --gray-900: #111111;
   --gray-600: #5A6063;
   --gray-300: #B4BBBF;
   --gray-200: #DCE1E4;
 }
+
+/* mejorar tipografía y contraste del navbar */
+.nav-link {
+  @apply text-sm font-medium text-gray-300 hover:text-primary transition-colors;
+}
+
+/* active / focus style para links en navbar */
+.nav-link:where(.active, .aria-current) {
+  @apply text-primary;
+  box-shadow: 0 2px 0 0 var(--color-primary);
+}
+
+/* fallback utilities si no aplicas @apply en tu pipeline: */
+.nav-link { color: #b4bbbf; font-weight: 500; }
+.nav-link:hover { color: var(--color-primary); transition: color .15s ease-in-out; }
+
+/* opcional: suavizar fuentes */
+html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
 
 @tailwind base;
 @tailwind components;

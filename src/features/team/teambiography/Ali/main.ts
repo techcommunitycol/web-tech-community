@@ -1,18 +1,18 @@
 import type Member from "../../team.types";
-import eldevbrayan from "../../../../assets/crew/brayan.jpg";
+import AliFoto from "../../../../assets/crew/Ali.png";
 
-export const Brayan: Member = {
-  name: "Ali",
-  role: "Diseñadora",
-  photo: eldevbrayan,
-  linkedin: "https://www.linkedin.com/in/eldevbrayan/",
-  instagram: "https://www.instagram.com/eldevbrayan/",
+export const Ali: Member = {
+  name: "Alisson Pacheco",
+  role: "Diseñadora Interactiva",
+  photo: AliFoto,
+  linkedin: "https://www.linkedin.com/feed/",
+  instagram: "https://www.instagram.com/cotfalie/",
   bio: "Frontend con visión full-stack y foco en comunidad.",
   bioLong:
-    "Además del enfoque en front-end, tiene conocimientos en backend (Node.js, php) y bases de datos relacionales, proponiendo soluciones integrales.",
-  skills: ["React", "Angular", "Node.js", "Python", "MySQL", "Comunidades"],
+    "con experiencia en diseño de interfaces digitales, creación de narrativas transmedia y edición audiovisual. He trabajado en proyectos que integran creatividad y tecnología para marcas, emprendimientos y organizaciones, aportando soluciones innovadoras que combinan estética, funcionalidad e impacto social.",
+  skills: ["design", "UI", "UX"],
   projects: [
-    { title: "Tech Community", description: "Plataforma de comunidad tech en Medellín" },
-    { title: "Trackenergy", description: "Plataforma de monitoreo energético" },
+    //{ title: "Tech Community", description: "Plataforma de comunidad tech en Medellín" },
+    //{ title: "Trackenergy", description: "Plataforma de monitoreo energético" },
   ],
 };

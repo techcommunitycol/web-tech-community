@@ -17,7 +17,7 @@ export default function AlliesSection() {
             {firstRow.map((a) => {
               const logo = (a as any).logo as string | undefined;
               const name = a.name ?? "";
-              const href = (a as any).link ?? (a as any).website ?? "#";
+              const href = (a as any).url ?? (a as any).website ?? "#";
 
               return (
                 <a
