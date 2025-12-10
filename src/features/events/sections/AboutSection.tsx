@@ -83,26 +83,27 @@ export default function AboutSection() {
           <ImpactTimeline />
         </div>
 
-        <div className="mt-10 grid gap-8 md:grid-cols-2 items-start">
+        <div className="mt-8 sm:mt-10 grid gap-6 sm:gap-8 md:grid-cols-2 items-start">
           <div>
-            <h4 className="text-xl font-semibold text-gray-200">Impacto medible</h4>
-            <p className="mt-2 text-gray-300">
+            <h4 className="text-lg sm:text-xl font-semibold text-gray-200">Impacto medible</h4>
+            <p className="mt-2 text-sm sm:text-base text-gray-300">
               Crecemos junto a otras comunidades y empresas para multiplicar el alcance y la empleabilidad en LATAM.
             </p>
 
-            <div className="mt-6 grid grid-cols-3 gap-4">
+            <div className="mt-4 sm:mt-6 grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
               {STATS.map((s) => (
-                <div key={s.label} className="rounded-lg bg-gray-900 p-4 text-center border border-gray-600">
-                  <div className="text-3xl font-extrabold text-primary">{s.kpi}</div>
+                <div key={s.label} className="rounded-lg bg-gray-900 p-3 sm:p-4 text-center border border-gray-600">
+                  <div className="text-2xl sm:text-3xl font-extrabold text-primary">{s.kpi}</div>
                   <div className="mt-1 text-xs uppercase tracking-wide text-gray-200">{s.label}</div>
                 </div>
               ))}
             </div>
 
-            <div className="mt-6">
+            <div className="mt-4 sm:mt-6">
               <a
                 href="#allies"
-                className="inline-flex items-center rounded-lg border border-gray-600 px-4 py-2 text-sm font-medium text-gray-200 hover:bg-[rgba(220,225,228,0.02)]"
+                className="inline-flex items-center rounded-lg border border-gray-600 px-3 sm:px-4 py-2 text-sm font-medium text-gray-200 hover:bg-[rgba(220,225,228,0.02)] focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-gray-900"
+                aria-label="Ver todas las comunidades aliadas"
               >
                 Ver comunidades aliadas →
               </a>
