@@ -1,5 +1,5 @@
 import type Member from "../../team.types";
-import rina from "../../../../assets/crew/RinaPlata.png";
+import rina from "../../../../assets/crew/Rina Plata.png";
 
 export const Rina: Member = {
   name: "Rina Plata",
