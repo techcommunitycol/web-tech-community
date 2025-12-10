@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
-export default {
-  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+module.exports = {
+  content: ["./index.html", "./src/**/*.{ts,tsx,js,jsx}"],
   theme: {
     extend: {
       colors: {
@@ -15,6 +15,14 @@ export default {
           700: "#0A53B5", // azul royal
           800: "#0A49A5", // azul intenso
           900: "#083D8A", // azul oscuro
+        },
+        primary: "#36979C",
+        "primary-dark": "#36979C",
+        gray: {
+          900: "#111111",
+          600: "#5A6063",
+          300: "#B4BBBF",
+          200: "#DCE1E4",
         },
       },
     },
