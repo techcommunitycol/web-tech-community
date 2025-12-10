@@ -8,6 +8,8 @@ import { Rina } from "./teambiography/RinaPlata/main";
 import { Mariana } from "./teambiography/MarianaCastañeda/main";
 import { Valentina } from "./teambiography/ValentinaPinzon/main";
 import { Shirley } from "./teambiography/ShirleyArango/main";
+import { Ali } from "./teambiography/Ali/main";
+
 
 export const TEAM: Member[] = [
   Carolina,
@@ -18,4 +20,5 @@ export const TEAM: Member[] = [
   JoseSosa,
   Rina,
   Mariana,
+  Ali
 ];
