@@ -2,12 +2,13 @@ import Section from "../../../shared/components/Section";
 import EventReel from "../ui/EventReel";
 import ImpactTimeline from "../../about/ImpactTimeline";
 import { EVENTS } from "../data/events";
+import { FiTarget, FiUsers, FiShare2, FiAward } from "react-icons/fi";
 
 const PILLARS = [
-  "Educación abierta",
-  "Mentorías 1:1",
-  "Comunidad & networking",
-  "Alianzas con impacto",
+  { label: "Educación abierta", icon: FiTarget },
+  { label: "Mentorías 1:1", icon: FiUsers },
+  { label: "Comunidad & networking", icon: FiShare2 },
+  { label: "Alianzas con impacto", icon: FiAward },
 ];
 
 const STATS = [
@@ -37,45 +38,63 @@ export default function AboutSection() {
             <article className="space-y-4">
               <div className="flex items-center gap-3">
                 <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[rgba(90,96,99,0.06)] text-primary">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden>
-                    <path d="M12 2v7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                    <path d="M12 21a7 7 0 100-14 7 7 0 000 14z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
+                  <FiTarget className="h-5 w-5" />
                 </div>
-                <h3 className="text-2xl md:text-3xl font-semibold text-gray-200">Misión</h3>
+                <h3 className="text-2xl md:text-3xl font-semibold text-gray-200">
+                  Misión
+                </h3>
               </div>
 
-              <p className="text-gray-300 leading-relaxed">
-                Somos una comunidad de tecnología que trabaja por transformar a Colombia, democratizando el acceso a la educación y la innovación. Construimos un ecosistema que conecta comunidades, estudiantes, empresas y poblaciones vulnerables como niños, jóvenes, comunidades indígenas y rurales, creando espacios de aprendizaje a través de programas de formación, eventos y colaboraciones. Con nuestro poder colectivo impulsamos el talento del futuro del país, orquestando un ecosistema de educación, innovación y comunidad con impacto social.
+              <p className="text-gray-300 leading-relaxed text-sm md:text-base">
+                Somos una comunidad de tecnología que trabaja por transformar a
+                Colombia, democratizando el acceso a la educación y la
+                innovación. Construimos un ecosistema que conecta comunidades,
+                estudiantes, empresas y poblaciones vulnerables como niños,
+                jóvenes, comunidades indígenas y rurales, creando espacios de
+                aprendizaje a través de programas de formación, eventos y
+                colaboraciones. Con nuestro poder colectivo impulsamos el
+                talento del futuro del país, orquestando un ecosistema de
+                educación, innovación y comunidad con impacto social.
               </p>
             </article>
 
             <article className="space-y-4">
               <div className="flex items-center gap-3">
                 <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[rgba(90,96,99,0.06)] text-primary">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden>
-                    <path d="M12 6v6l4 2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                    <path d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
+                  <FiAward className="h-5 w-5" />
                 </div>
-                <h3 className="text-2xl md:text-3xl font-semibold text-gray-200">Visión</h3>
+                <h3 className="text-2xl md:text-3xl font-semibold text-gray-200">
+                  Visión
+                </h3>
               </div>
 
-              <p className="text-gray-300 leading-relaxed">
-                En la próxima década, seremos el ecosistema de innovación y talento tecnológico referente en América Latina, reconocido por convertir a Colombia en un modelo global de educación, tecnología e inclusión social. Nuestro propósito es consolidar un ecosistema sostenible donde confluyen comunidades, empresas, instituciones y gobiernos, creando soluciones de impacto que transforman realidades, reducen brechas sociales y potencian el talento del país democratizando la educación, la investigación de vanguardia y las oportunidades económicas.
+              <p className="text-gray-300 leading-relaxed text-sm md:text-base">
+                En la próxima década, seremos el ecosistema de innovación y
+                talento tecnológico referente en América Latina, reconocido por
+                convertir a Colombia en un modelo global de educación,
+                tecnología e inclusión social. Nuestro propósito es consolidar
+                un ecosistema sostenible donde confluyen comunidades, empresas,
+                instituciones y gobiernos, creando soluciones de impacto que
+                transforman realidades, reducen brechas sociales, potencien el
+                talento del país democratizando la educación, la investigación
+                de vanguardia y las oportunidades económicas.
               </p>
             </article>
           </div>
 
-          <div className="mt-6 flex flex-wrap gap-2">
-            {PILLARS.map((p) => (
-              <span
-                key={p}
-                className="inline-flex items-center rounded-full bg-[rgba(90,96,99,0.10)] px-3 py-1 text-xs text-gray-200"
-              >
-                {p}
-              </span>
-            ))}
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
+            {PILLARS.map((p) => {
+              const Icon = p.icon;
+              return (
+                <span
+                  key={p.label}
+                  className="inline-flex items-center gap-2 rounded-full bg-[rgba(90,96,99,0.06)] px-3 py-2 text-xs text-gray-200 shadow-sm"
+                >
+                  <Icon className="h-4 w-4 text-primary" />
+                  <span className="font-medium">{p.label}</span>
+                </span>
+              );
+            })}
           </div>
         </div>
 
@@ -85,31 +104,32 @@ export default function AboutSection() {
 
         <div className="mt-8 sm:mt-10">
           <div>
-            <h4 className="text-lg sm:text-xl font-semibold text-gray-200">Impacto medible</h4>
+            <h4 className="text-lg sm:text-xl font-semibold text-gray-200">
+              Impacto medible
+            </h4>
             <p className="mt-2 text-sm sm:text-base text-gray-300">
-              Crecemos junto a otras comunidades y empresas para multiplicar el alcance y la empleabilidad en LATAM.
+              Crecemos junto a otras comunidades y empresas para multiplicar el
+              alcance y la empleabilidad en LATAM.
             </p>
 
             <div className="mt-4 sm:mt-6 grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
               {STATS.map((s) => (
-                <div key={s.label} className="rounded-lg bg-gray-900 p-3 sm:p-4 text-center border border-gray-600">
-                  <div className="text-2xl sm:text-3xl font-extrabold text-primary">{s.kpi}</div>
-                  <div className="mt-1 text-xs uppercase tracking-wide text-gray-200">{s.label}</div>
+                <div
+                  key={s.label}
+                  className="rounded-lg bg-gray-900 p-3 sm:p-4 text-center border border-gray-600"
+                >
+                  <div className="text-2xl sm:text-3xl font-extrabold text-primary">
+                    {s.kpi}
+                  </div>
+                  <div className="mt-1 text-xs uppercase tracking-wide text-gray-200">
+                    {s.label}
+                  </div>
                 </div>
               ))}
             </div>
-
-            <div className="mt-4 sm:mt-6">
-              <a
-                href="#allies"
-                className="inline-flex items-center rounded-lg border border-gray-600 px-3 sm:px-4 py-2 text-sm font-medium text-gray-200 hover:bg-[rgba(220,225,228,0.02)] focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-gray-900"
-                aria-label="Ver todas las comunidades aliadas"
-              >
-                Ver comunidades aliadas →
-              </a>
-            </div>
           </div>
         </div>
+
         <div className="mt-8 sm:mt-10">
           <EventReel events={EVENTS} />
         </div>

@@ -2,7 +2,6 @@ import type { WhatWeDoItem } from "../types";
 
 export const WHAT_WE_DO_ITEMS: WhatWeDoItem[] = [
   {
-    icon: "🧑‍💻",
     slug: "eventos-y-talleres",
     title: "Eventos y talleres",
     desc: "Charlas técnicas y workshops para aprender haciendo.",
@@ -22,7 +21,6 @@ export const WHAT_WE_DO_ITEMS: WhatWeDoItem[] = [
     }
   },
   {
-    icon: "💬",
     slug: "intercambios-de-idiomas",
     title: "Intercambios de idiomas",
     desc: "Intercambios de idiomas mensuales para aprender juntos y hacer nuevas conexiones.",
@@ -43,7 +41,6 @@ export const WHAT_WE_DO_ITEMS: WhatWeDoItem[] = [
     }
   },
   {
-    icon: "🤝",
     slug: "mentorias-y-paneles",
     title: "Mentorías y paneles",
     desc: "Conecta con referentes de la industria.",
@@ -63,7 +60,6 @@ export const WHAT_WE_DO_ITEMS: WhatWeDoItem[] = [
     }
   },
   {
-    icon: "🌎",
     slug: "alianzas-y-comunidad",
     title: "Alianzas y comunidad",
     desc: "Colaboramos con más comunidades para ampliar el impacto.",

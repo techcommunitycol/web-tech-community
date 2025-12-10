@@ -1,55 +1,76 @@
 import type { WhatWeDoItem } from "../types";
+import type { IconType } from "react-icons";
+import { FiCode, FiMessageSquare, FiUsers, FiGlobe } from "react-icons/fi";
+
+const ICONS: Record<string, IconType> = {
+  "eventos-y-talleres": FiCode,
+  "intercambios-de-idiomas": FiMessageSquare,
+  "mentorias-y-paneles": FiUsers,
+  "alianzas-y-comunidad": FiGlobe,
+};
 
 export default function WhatWeDoModalBody({ item }: { item: WhatWeDoItem }) {
+  const Icon = ICONS[item.slug] ?? FiCode;
+
   return (
-    <>
-      <div className="flex items-start gap-3">
-        <div className="text-4xl">{item.icon}</div>
-        <div>
-          <h3 id="whatwedo-modal-title" className="text-xl font-semibold text-white">
-            {item.title}
-          </h3>
-          <p className="text-slate-300 mt-1">{item.desc}</p>
+    <div>
+      <header className="flex items-center gap-4">
+        <div
+          className="h-12 w-12 rounded-full grid place-items-center"
+          style={{ background: "var(--color-primary-rgba-12)" }}
+          aria-hidden
+        >
+          <Icon className="h-6 w-6 text-primary" />
         </div>
-      </div>
 
-      <div className="mt-6 grid md:grid-cols-2 gap-6">
         <div>
-          <h4 className="text-sm font-semibold text-slate-200">Problema</h4>
-          <p className="text-slate-300 mt-2">{item.details.problem}</p>
+          <h3 className="text-xl font-bold text-gray-100">{item.title}</h3>
+          {item.tag ? <div className="text-xs text-gray-300 mt-1 uppercase">{item.tag}</div> : null}
         </div>
-        <div>
-          <h4 className="text-sm font-semibold text-slate-2 00">Resultados</h4>
-          <ul className="mt-2 list-disc list-inside text-slate-300">
-            {item.details.outcomes.map((o) => <li key={o}>{o}</li>)}
-          </ul>
-        </div>
-      </div>
+      </header>
 
-      <div className="mt-6">
-        <h4 className="text-sm font-semibold text-slate-200">Solución (tácticas)</h4>
-        <ul className="mt-2 grid md:grid-cols-2 gap-2">
-          {item.details.solution.map((s) => (
-            <li key={s} className="text-slate-300 flex items-start gap-2">
-              <span className="mt-1 inline-block h-2 w-2 rounded-full bg-indigo-400" />
-              <span>{s}</span>
-            </li>
-          ))}
-        </ul>
-      </div>
+      <section className="mt-4 text-sm text-gray-300">
+        <p>{item.desc}</p>
 
-      {item.details.tech && (
-        <div className="mt-6">
-          <h4 className="text-sm font-semibold text-slate-200">Stack / Herramientas</h4>
-          <div className="mt-2 flex flex-wrap gap-2">
-            {item.details.tech.map((t) => (
-              <span key={t} className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-slate-200">
+        {item.details?.problem && (
+          <div className="mt-4">
+            <h4 className="text-sm font-semibold text-gray-200">Problema</h4>
+            <p className="mt-1 text-sm text-gray-300">{item.details.problem}</p>
+          </div>
+        )}
+
+        {item.details?.solution && (
+          <div className="mt-4">
+            <h4 className="text-sm font-semibold text-gray-200">Solución</h4>
+            <ul className="mt-2 list-disc list-inside text-sm text-gray-300 space-y-1">
+              {item.details.solution.map((s, i) => (
+                <li key={i}>{s}</li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        {item.details?.outcomes && (
+          <div className="mt-4">
+            <h4 className="text-sm font-semibold text-gray-200">Resultados</h4>
+            <ul className="mt-2 list-disc list-inside text-sm text-gray-300 space-y-1">
+              {item.details.outcomes.map((o, i) => (
+                <li key={i}>{o}</li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        {item.tech && (
+          <div className="mt-4 flex flex-wrap gap-2">
+            {item.tech.map((t) => (
+              <span key={t} className="text-xs bg-[rgba(90,96,99,0.06)] px-2 py-1 rounded text-gray-200">
                 {t}
               </span>
             ))}
           </div>
-        </div>
-      )}
-    </>
+        )}
+      </section>
+    </div>
   );
 }

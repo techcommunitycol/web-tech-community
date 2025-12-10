@@ -52,12 +52,6 @@ export default function WhatWeDoSection() {
           >
             Cerrar
           </button>
-          <a
-            href="/what-we-do"
-            className="px-4 py-2 rounded-lg bg-primary text-gray-200 hover:bg-[rgba(54,151,156,0.9)]"
-          >
-            Ver todas las iniciativas
-          </a>
         </div>
       </Modal>
     </Section>
