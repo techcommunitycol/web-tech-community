@@ -1,23 +1,35 @@
+:root{
+  --color-primary: #36979C;
+  --color-primary-rgba-12: rgba(54,151,156,0.12);
+  --gray-900: #111111; 
+  --gray-600: #5A6063;
+  --gray-300: #B4BBBF;
+  --gray-200: #DCE1E4;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-.bg-grid {
-  background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.08) 1px, transparent 0);
-  background-size: 24px 24px;
+html, body, #root {
+  min-height: 100%;
+  background: var(--gray-900);
+  color: var(--gray-300);
 }
+
+.bg-grid {
+  background-image: radial-gradient(var(--gray-200) 1px, transparent 1px);
+  background-size: 20px 20px;
+  opacity: 0.06;
+  pointer-events: none;
+}
+
+a{ color:var(--color-primary); }
 
 @keyframes float {
   0%, 100% { transform: translateY(0) }
   50% { transform: translateY(-6px) }
 }
-.animate-float { animation: float 6s ease-in-out infinite; }
-
-.bg-grid {
-  background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.08) 1px, transparent 0);
-  background-size: 24px 24px;
-}
-@keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
 .animate-float { animation: float 6s ease-in-out infinite; }
 
 @keyframes fadeUp { from {opacity:.0; transform: translateY(10px)} to {opacity:1; transform: translateY(0)} }

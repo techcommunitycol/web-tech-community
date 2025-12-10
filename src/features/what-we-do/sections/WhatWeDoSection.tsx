@@ -23,25 +23,41 @@ export default function WhatWeDoSection() {
       title="¿Qué hacemos?"
       subtitle="Iniciativas concretas y medibles para activar el ecosistema tech."
     >
-      <div className="grid md:grid-cols-3 gap-6">
-        {WHAT_WE_DO_ITEMS.map((it) => (
-          <WhatWeDoCard key={it.slug} item={it} onOpen={onOpen} />
-        ))}
+      <div className="bg-gray-900 rounded-2xl border border-gray-600 p-6 md:p-8 relative overflow-hidden">
+        <div
+          className="pointer-events-none absolute -top-8 -right-8 h-32 w-32 rounded-full blur-2xl"
+          style={{ background: "radial-gradient(circle, var(--color-primary-rgba-12, rgba(54,151,156,0.06)), transparent 40%)" }}
+        />
+
+        <p className="mb-6 text-sm text-gray-300 max-w-2xl">
+          Diseñamos programas educativos, eventos y alianzas para reducir brechas de acceso y potenciar talento en comunidades vulnerables.
+        </p>
+
+        <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 auto-rows-fr">
+          {WHAT_WE_DO_ITEMS.map((it) => (
+            <div key={it.slug} className="h-full">
+              <WhatWeDoCard item={it} onOpen={onOpen} />
+            </div>
+          ))}
+        </div>
       </div>
 
       <Modal isOpen={open} onClose={() => setOpen(false)} titleId={titleId}>
         {active && <WhatWeDoModalBody item={active} />}
+
         <div className="mt-8 flex justify-end gap-3">
-          {/* Botón “Ver más” opcional (si más adelante haces ruta /what-we-do/:slug) */}
-          {/* <Link to={`/what-we-do/${active?.slug}`} className="px-4 py-2 rounded-lg bg-indigo-600 text-white hover:bg-indigo-500">
-            Ver más
-          </Link> */}
           <button
-            className="px-4 py-2 rounded-lg border border-white/10 bg-white/5 text-slate-200 hover:bg-white/10"
+            className="px-4 py-2 rounded-lg border border-gray-600 bg-[rgba(90,96,99,0.06)] text-gray-200 hover:bg-[rgba(90,96,99,0.10)]"
             onClick={() => setOpen(false)}
           >
             Cerrar
           </button>
+          <a
+            href="/what-we-do"
+            className="px-4 py-2 rounded-lg bg-primary text-gray-200 hover:bg-[rgba(54,151,156,0.9)]"
+          >
+            Ver todas las iniciativas
+          </a>
         </div>
       </Modal>
     </Section>

@@ -69,8 +69,8 @@ export default function TeamCarousel() {
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
     >
-      <div className="pointer-events-none absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-[#0b1020] to-transparent" />
-      <div className="pointer-events-none absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-[#0b1020] to-transparent" />
+      <div className="pointer-events-none absolute inset-y-0 left-0 w-16 bg-gradient-to-r  from-gray-900 to-transparent" />
+      <div className="pointer-events-none absolute inset-y-0 right-0 w-16 bg-gradient-to-l  from-gray-900 to-transparent" />
 
       <div
         ref={trackRef}
@@ -96,7 +96,7 @@ export default function TeamCarousel() {
                   }`}
                   style={{ animationDelay: `${(i % 5) * 150}ms` as any }}
                 >
-                  <div className="rounded-2xl bg-[#0b1020] p-3 ring-1 ring-white/10">
+                  <div className="rounded-2xl  from-gray-700 p-3 ring-1 ring-white/10">
                     <div className="relative rounded-xl overflow-hidden bg-black/20">
                       <div className="w-full aspect-[4/5]">
                         <img
