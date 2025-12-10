@@ -16,13 +16,15 @@ export default function Hero() {
 
           <div className="mt-6">
             <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight">
-              Bienvenidos a <span className="text-primary">TechCommunity</span>
+              Bienvenidos a
+              <span className="block mt-2 leading-tight">
+                <span className="text-primary">Tech Community</span>
+              </span>
             </h1>
           </div>
 
           <p className="mt-5 text-lg text-gray-300">
-            Nuestra prioridad es apoyar a comunidades vulnerables como niños, mujeres, y poblaciones indígenas y rurales.
-            Generamos oportunidades reales que cierran brechas de conocimiento y acceso a la tecnología.
+            Somos un ecosistema de educación e innovación tecnológica que conecta personas, comunidades y empresas para democratizar el conocimiento, impulsar el talento colombiano y crear oportunidades de impacto social, investigación y empleabilidad en Latinoamérica.
           </p>
 
           <div className="mt-8 flex items-center justify-center gap-3">
