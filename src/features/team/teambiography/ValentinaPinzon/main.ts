@@ -5,7 +5,7 @@ export const Valentina: Member = {
   name: "Valentina Pinzón",
   role: "Página web y Redes Sociales",
   photo: valentina,
-  linkedin: "https://www.instagram.com/v.dev.valen/?hl=es",
+  linkedin: "https://www.linkedin.com/in/valentina-p-86b3b913a/",
   instagram: "https://www.instagram.com/v.dev.valen/?hl=es",
   bio: "Desarrolladora de software y líder activa en GDG y Pioneras Dev.",
   bioLong:
