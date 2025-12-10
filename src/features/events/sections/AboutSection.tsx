@@ -83,7 +83,7 @@ export default function AboutSection() {
           <ImpactTimeline />
         </div>
 
-        <div className="mt-8 sm:mt-10 grid gap-6 sm:gap-8 md:grid-cols-2 items-start">
+        <div className="mt-8 sm:mt-10">
           <div>
             <h4 className="text-lg sm:text-xl font-semibold text-gray-200">Impacto medible</h4>
             <p className="mt-2 text-sm sm:text-base text-gray-300">
@@ -109,7 +109,8 @@ export default function AboutSection() {
               </a>
             </div>
           </div>
-
+        </div>
+        <div className="mt-8 sm:mt-10">
           <EventReel events={EVENTS} />
         </div>
       </div>
