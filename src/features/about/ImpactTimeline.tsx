@@ -1,8 +1,8 @@
 import { FiCode, FiTrendingUp, FiGlobe } from "react-icons/fi";
 
 const MILESTONES = [
-  { year: "2022", title: "Nacimiento",  desc: "Meetups pequeños, primeros talleres y canal de comunidad." },
-  { year: "2023", title: "Aceleración", desc: "Mentorías 1:1, capítulos temáticos y alianzas con comunidades amigas." },
+  { year: "2021", title: "Nacimiento",  desc: "Meetups pequeños, primeros talleres y canal de comunidad." },
+  { year: "2022-2023", title: "Aceleración", desc: "Mentorías 1:1, capítulos temáticos y alianzas con comunidades amigas." },
   { year: "2024–25", title: "Expansión", desc: "Más ciudades, programas para niñez y mujeres, y empleabilidad." },
 ];
 

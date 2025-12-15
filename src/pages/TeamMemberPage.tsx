@@ -61,8 +61,7 @@ export default function TeamMemberPage() {
 
             <p className="inline-flex items-center gap-2 rounded-full bg-[#36979c]/20 px-3 py-1 text-sm ring-1 ring-[#36979c]/25">
               {member.role}
-            </p>
-
+            </p>  
           <div className="flex flex-wrap gap-3 pt-2">
           {member.linkedin && (
             <a
@@ -105,14 +104,39 @@ export default function TeamMemberPage() {
             )}
 
             {!!member.projects?.length && (
-              <ul className="list-disc pl-5 text-white/80 space-y-2">
-                {member.projects.map((p, i) => (
-                  <li key={i}>
-                    <span className="font-medium">{p.title}</span> —{" "}
-                    {p.description}
-                  </li>
-                ))}
-              </ul>
+              <div className="space-y-4 pt-3"> {/* Agregamos un poco de espacio */}
+                <h3 className="text-lg font-semibold text-white/90">Proyectos Personales & Emprendimientos</h3>
+                
+                <div className="space-y-4"> {/* Contenedor para la lista de proyectos */}
+                  {member.projects.map((p, i) => (
+                    <div 
+                      key={i} 
+                      className="rounded-xl bg-white/5 p-5 ring-1 ring-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-4"
+                    >
+                      {/* Título y Descripción */}
+                      <div className="min-w-0">
+                        <h4 className="text-base font-semibold text-white/90 truncate">
+                          {p.title}
+                        </h4>
+                        <p className="text-sm leading-relaxed text-white/70 mt-1">
+                          {p.description}
+                        </p>
+                      </div>
+
+                      {p.link && (
+                        <a
+                          href={p.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex-shrink-0 inline-flex items-center justify-center rounded-lg bg-[#36979c]/30 px-4 py-2 text-sm font-medium text-white hover:bg-[#36979c]/40 transition duration-150"
+                        >
+                          Ver Proyecto
+                        </a>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </div>
             )}
           </div>
 

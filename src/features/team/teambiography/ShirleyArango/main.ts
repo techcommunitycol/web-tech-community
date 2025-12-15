@@ -3,15 +3,13 @@ import shirley from "../../../../assets/crew/shirley.jpg";
 
 export const Shirley: Member = {
   name: "Shirley Arango",
-  role: "Comunidad de comunidades",
+  role: "Organizadora - Estudiante de desarrollo web",
   photo: shirley,
   linkedin: "https://www.linkedin.com/in/shirley-arango-cardona-51202a375",
   instagram: "https://www.instagram.com/shirley_dev0?igsh=cXpiczE1ejMwMmV3",
-  bio: "Aprendiz de Análisis y Desarrollo de Software en el SENA.",
+  bio: "Organizadora activa desde 2025.",
   bioLong:
-    "Soy aprendiz de ADSO en el SENA, con interés en desarrollo web y en proyectos que aporten valor a las personas. Actualmente hago parte de Tech Community en el pilar de Comunidad de Comunidades, donde apoyo la visibilización de eventos tecnológicos en Medellín.",
+    "Aprendiz de ADSO en el SENA, con interés en desarrollo web y en proyectos que aporten valor a las personas. Actualmente hago parte de Tech Community donde apoyo la visibilización de eventos tecnológicos en Medellín.",
   skills: ["Desarrollo web", "Comunicación", "Eventos"],
-  projects: [
-    { title: "Tech Community", description: "Visibilización de eventos tecnológicos" },
-  ],
+ 
 };
