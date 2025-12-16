@@ -3,14 +3,10 @@ import { Link } from "react-router-dom";
 import { TEAM } from "./team.data";
 import { slugify } from "../../utils/slugify";
 
-const PRIORITY = ["Carolina", "Valentina", "Rina"];
+
 
 function orderedTeam() {
-  const pri = TEAM.filter((t) => PRIORITY.includes(t.name)).sort(
-    (a, b) => PRIORITY.indexOf(a.name) - PRIORITY.indexOf(b.name)
-  );
-  const rest = TEAM.filter((t) => !PRIORITY.includes(t.name));
-  return [...pri, ...rest];
+  return TEAM; 
 }
 
 export default function TeamCarousel() {
@@ -33,7 +29,8 @@ export default function TeamCarousel() {
     if (!el) return;
     const card = el.children[i] as HTMLElement | undefined;
     if (!card) return;
-    const left = card.offsetLeft - (el.clientWidth - card.clientWidth) / 2;
+
+    const left = card.offsetLeft - (el.clientWidth - card.clientWidth) / 2; 
     el.scrollTo({ left, behavior: "smooth" });
   };
 
@@ -79,7 +76,6 @@ export default function TeamCarousel() {
         {data.map((m, i) => {
           const active = i === idx;
           const slug = slugify(m.name);
-          const isFeatured = PRIORITY.includes(m.name);
 
           return (
             <figure
@@ -91,6 +87,7 @@ export default function TeamCarousel() {
                 className="group block focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00C853]/70 rounded-2xl"
               >
                 <div
+
                   className={`card-animated-border transition-transform duration-500 group-hover:-translate-y-1 ${
                     i === idx ? "scale-[1.01]" : "scale-[0.99]"
                   }`}

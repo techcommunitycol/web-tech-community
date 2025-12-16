@@ -7,5 +7,5 @@ export default interface Member {
   bio?: string;
   bioLong?: string;
   skills?: string[];
-  projects?: { title: string; description: string; link?: string }[];
+  projects?: { title: string; description: string; link?: string }[]; 
 }

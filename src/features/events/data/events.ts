@@ -52,12 +52,6 @@ export const EVENTS: EventMeta[] = [
       { kind: "image", src: idiomas2, alt: "Actividad grupal durante el intercambio de idiomas" },
       { kind: "image", src: idiomas3, alt: "Personas practicando inglés y español en parejas" },
       { kind: "image", src: idiomas4, alt: "Dinámica lúdica en el intercambio de idiomas" },
-      {
-        kind: "video",
-        provider: "youtube",
-        id: "dQw4w9WgXcQ",
-        title: "Recap del intercambio de idiomas", // ejemplo
-      },
     ],
   },
 
@@ -106,12 +100,6 @@ export const EVENTS: EventMeta[] = [
       { kind: "image", src: tech2, alt: "Demo de animación y diseño en vivo" },
       { kind: "image", src: tech3, alt: "Zona de networking y comunidad tech" },
       { kind: "image", src: tech4, alt: "Charla sobre tecnologías 3D y mobile" },
-      {
-        kind: "video",
-        provider: "youtube",
-        id: "dQw4w9WgXcQ",
-        title: "Recap del evento", // ejemplo
-      },
     ],
   },
 
