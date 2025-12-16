@@ -96,7 +96,7 @@ export default function Connect() {
               rel="noreferrer"
               className="inline-flex items-center rounded-md bg-primary px-3 py-1.5 text-xs font-semibold text-gray-200 hover:opacity-95"
             >
-              Unirme al grupo de WPP
+              Unirme al grupo de WP
             </a>
 
             <button
