@@ -29,7 +29,7 @@ export default function TeamCarousel() {
     if (!el) return;
     const card = el.children[i] as HTMLElement | undefined;
     if (!card) return;
-    // La lógica de centrado se mantiene igual
+
     const left = card.offsetLeft - (el.clientWidth - card.clientWidth) / 2; 
     el.scrollTo({ left, behavior: "smooth" });
   };
@@ -76,8 +76,6 @@ export default function TeamCarousel() {
         {data.map((m, i) => {
           const active = i === idx;
           const slug = slugify(m.name);
-          // 3. ELIMINADA: La variable isFeatured ya no es necesaria.
-          // const isFeatured = PRIORITY.includes(m.name); 
 
           return (
             <figure
@@ -89,9 +87,7 @@ export default function TeamCarousel() {
                 className="group block focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00C853]/70 rounded-2xl"
               >
                 <div
-                  // 3. REVISADO: Se mantiene la lógica de animación para el `idx` activo, 
-                  // pero si había estilos condicionales basados en `isFeatured`, 
-                  // asegúrate de que se hayan eliminado aquí o en tu CSS.
+
                   className={`card-animated-border transition-transform duration-500 group-hover:-translate-y-1 ${
                     i === idx ? "scale-[1.01]" : "scale-[0.99]"
                   }`}
