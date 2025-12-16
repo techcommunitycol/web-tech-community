@@ -24,13 +24,13 @@ export default function Navbar() {
               {l.label}
             </a>
           ))}
-
           <a
-            href="https://docs.google.com/forms/d/e/1FAIpQLSej9YnbVigK3eZzdj3qGjNKyhwkzFEpjWOchne6q4ygZ4hlkg/viewform?fbclid=PAVERDUAMasSFleHRuA2FlbQIxMAABp98eg6mPFEbYuzxbXFRjqsfqacUx3Q2deFFB-rqcluHRL7x-NPvYLcoGj211_aem_HnpiYPr7HHmTiy07AM235Q"
+            href="#connect"
             className="ml-2 inline-flex items-center rounded-md bg-primary px-4 py-2 text-sm font-semibold text-white shadow-sm hover:brightness-95 focus:outline-none"
           >
-            Únete
+            Contáctanos
           </a>
+
         </div>
 
         <button
@@ -44,23 +44,6 @@ export default function Navbar() {
         </button>
       </nav>
 
-      {open && (
-        <div className="md:hidden border-t border-gray-800 bg-gray-900/80 backdrop-blur-sm">
-          <div className="container mx-auto px-4 py-4 flex flex-col gap-3">
-            {NAV_LINKS.map((l) => (
-              <a key={l.href} href={l.href} className="nav-link block" onClick={() => setOpen(false)}>
-                {l.label}
-              </a>
-            ))}
-            <a
-              href="/join"
-              className="mt-2 inline-flex w-full items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-semibold text-gray-900"
-            >
-              Únete
-            </a>
-          </div>
-        </div>
-      )}
     </header>
   );
 }
