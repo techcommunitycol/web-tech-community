@@ -7,7 +7,7 @@ export default function Navbar() {
   const closeMenu = () => setOpen(false);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-gray-900/80 backdrop-blur-sm">
+    <header className="fixed md:static top-0 left-0 right-0 z-50 bg-gray-900/80">
       <nav className="container mx-auto flex items-center justify-between px-4 py-3 md:py-4">
         <div className="flex items-center gap-4">
           <a href="/" className="inline-flex items-center gap-5 ml-8 md:ml-16">
@@ -47,10 +47,9 @@ export default function Navbar() {
 
       {open && (
         <div
-          className="fixed inset-0 z-40 bg-gray-900/95 backdrop-blur-sm overflow-y-auto"
+          className="fixed inset-0 z-40 bg-gray-900/95 backdrop-blur-sm overflow-y-auto min-h-[100dvh] w-full"
           onClick={closeMenu}
           style={{
-            height: '100vh',
             WebkitOverflowScrolling: 'touch',
             overscrollBehavior: 'contain'
           }}
@@ -112,8 +111,6 @@ export default function Navbar() {
                   </a>
                 );
               })}
-            </nav>
-
             <div className="p-4 border-t border-gray-800">
               <a
                 href="#connect"
@@ -126,10 +123,7 @@ export default function Navbar() {
                 </svg>
               </a>
             </div>
-
-            <div className="p-4 text-center text-sm text-gray-500 border-t border-gray-800">
-              <p>© {new Date().getFullYear()} TechCommunity</p>
-            </div>
+            </nav>
           </div>
         </div>
       )}
