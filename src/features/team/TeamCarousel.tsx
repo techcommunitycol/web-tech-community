@@ -74,9 +74,6 @@ export default function TeamCarousel() {
         className="no-scrollbar overflow-x-auto flex gap-6 px-4 snap-x snap-mandatory items-stretch"
       >
         {data.map((m, i) => {
-          const active = i === idx;
-          const slug = slugify(m.name);
-
           return (
             <figure
               key={m.name}
