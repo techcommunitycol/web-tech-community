@@ -1,5 +1,5 @@
 import type Member from "../../team.types";
-import jose from "../../../../assets/crew/Jose.jpg";
+import jose from "../../../../assets/crew/jose.jpg";
 
 export const JoseSosa: Member = {
   name: "Jose Sosa",
