@@ -18,7 +18,7 @@ type ViewMode = "month" | "week" | "list";
 const CalendarPage: React.FC = () => {
   const [currentDate, setCurrentDate] = useState(
     new Date(new Date().toLocaleString("en-US", { timeZone: "America/Bogota" }))
-  );  
+  );
   const [selectedEvent, setSelectedEvent] = useState<CalendarEvent | null>(null);
   const [viewMode, setViewMode] = useState<ViewMode>("month");
   const [activeTypes, setActiveTypes] = useState<EventType[]>([
@@ -30,9 +30,9 @@ const CalendarPage: React.FC = () => {
 
   const allOwners = getUniqueOwners(EVENTS);
   const [activeOwners, setActiveOwners] = useState<string[]>(allOwners);
-  const [activeFormatos, setActiveFormatos] =
-    useState<FormatoType[]>([] as FormatoType[] || [...new Set(EVENTS.map(e => e.format as FormatoType))]); // si prefieres puedes dejarlo como antes: useState<FormatoType[]>([...FORMATOS])
-
+  const [activeFormatos, setActiveFormatos] = useState<FormatoType[]>([
+    ...new Set(EVENTS.map((e) => e.format as FormatoType)),
+  ]);
   const today = new Date();
   const monthLabel = currentDate.toLocaleDateString("en-US", {
     month: "long",
@@ -146,31 +146,28 @@ const CalendarPage: React.FC = () => {
           <div className="flex items-center gap-1 text-xs">
             <button
               onClick={() => setViewMode("month")}
-              className={`rounded-md px-3 py-1 ${
-                viewMode === "month"
+              className={`rounded-md px-3 py-1 ${viewMode === "month"
                   ? "bg-slate-800 text-slate-100"
                   : "text-slate-400 hover:bg-slate-900"
-              }`}
+                }`}
             >
               Mes
             </button>
             <button
               onClick={() => setViewMode("week")}
-              className={`rounded-md px-3 py-1 ${
-                viewMode === "week"
+              className={`rounded-md px-3 py-1 ${viewMode === "week"
                   ? "bg-slate-800 text-slate-100"
                   : "text-slate-400 hover:bg-slate-900"
-              }`}
+                }`}
             >
               Semana
             </button>
             <button
               onClick={() => setViewMode("list")}
-              className={`rounded-md px-3 py-1 ${
-                viewMode === "list"
+              className={`rounded-md px-3 py-1 ${viewMode === "list"
                   ? "bg-slate-800 text-slate-100"
                   : "text-slate-400 hover:bg-slate-900"
-              }`}
+                }`}
             >
               Todos
             </button>
