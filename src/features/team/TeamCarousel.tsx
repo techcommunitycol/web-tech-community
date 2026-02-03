@@ -3,14 +3,10 @@ import { Link } from "react-router-dom";
 import { TEAM } from "./team.data";
 import { slugify } from "../../utils/slugify";
 
-const PRIORITY = ["Carolina", "Valentina", "Rina"];
+
 
 function orderedTeam() {
-  const pri = TEAM.filter((t) => PRIORITY.includes(t.name)).sort(
-    (a, b) => PRIORITY.indexOf(a.name) - PRIORITY.indexOf(b.name)
-  );
-  const rest = TEAM.filter((t) => !PRIORITY.includes(t.name));
-  return [...pri, ...rest];
+  return TEAM; 
 }
 
 export default function TeamCarousel() {
@@ -33,7 +29,8 @@ export default function TeamCarousel() {
     if (!el) return;
     const card = el.children[i] as HTMLElement | undefined;
     if (!card) return;
-    const left = card.offsetLeft - (el.clientWidth - card.clientWidth) / 2;
+
+    const left = card.offsetLeft - (el.clientWidth - card.clientWidth) / 2; 
     el.scrollTo({ left, behavior: "smooth" });
   };
 
@@ -69,18 +66,14 @@ export default function TeamCarousel() {
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
     >
-      <div className="pointer-events-none absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-[#0b1020] to-transparent" />
-      <div className="pointer-events-none absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-[#0b1020] to-transparent" />
+      <div className="pointer-events-none absolute inset-y-0 left-0 w-16 bg-gradient-to-r  from-gray-900 to-transparent" />
+      <div className="pointer-events-none absolute inset-y-0 right-0 w-16 bg-gradient-to-l  from-gray-900 to-transparent" />
 
       <div
         ref={trackRef}
         className="no-scrollbar overflow-x-auto flex gap-6 px-4 snap-x snap-mandatory items-stretch"
       >
         {data.map((m, i) => {
-          const active = i === idx;
-          const slug = slugify(m.name);
-          const isFeatured = PRIORITY.includes(m.name);
-
           return (
             <figure
               key={m.name}
@@ -91,12 +84,13 @@ export default function TeamCarousel() {
                 className="group block focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00C853]/70 rounded-2xl"
               >
                 <div
+
                   className={`card-animated-border transition-transform duration-500 group-hover:-translate-y-1 ${
                     i === idx ? "scale-[1.01]" : "scale-[0.99]"
                   }`}
                   style={{ animationDelay: `${(i % 5) * 150}ms` as any }}
                 >
-                  <div className="rounded-2xl bg-[#0b1020] p-3 ring-1 ring-white/10">
+                  <div className="rounded-2xl  from-gray-700 p-3 ring-1 ring-white/10">
                     <div className="relative rounded-xl overflow-hidden bg-black/20">
                       <div className="w-full aspect-[4/5]">
                         <img
@@ -117,12 +111,14 @@ export default function TeamCarousel() {
                         {m.name}
                       </h3>
                       <p className="text-[12px] text-white/60">{m.role}</p>
-                      <span className="mt-3 inline-flex items-center gap-1.5 rounded-full bg-white/5 px-3 py-1 text-xs text-white/90 ring-1 ring-white/10 transition-colors group-hover:bg-white/10">
-                        Ver biografía{" "}
+                     <br></br>
+                     <span className="inline-flex items-center gap-2 rounded-xl border border-gray-600 hover:border-primary/30 px-5 py-3 text-sm font-semibold text-gray-200 group">
+                        Ver biografía
                         <span className="transition-transform group-hover:translate-x-0.5">
                           →
                         </span>
                       </span>
+
                     </figcaption>
                   </div>
                 </div>

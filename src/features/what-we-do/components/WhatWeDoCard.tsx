@@ -1,25 +1,72 @@
 import type { WhatWeDoItem } from "../types";
+import type { IconType } from "react-icons";
+import { FiCode, FiMessageSquare, FiUsers, FiGlobe } from "react-icons/fi";
 
 type Props = {
   item: WhatWeDoItem;
   onOpen: (item: WhatWeDoItem) => void;
 };
 
+const ICONS: Record<string, IconType> = {
+  "eventos-y-talleres": FiCode,
+  "intercambios-de-idiomas": FiMessageSquare,
+  "mentorias-y-paneles": FiUsers,
+  "alianzas-y-comunidad": FiGlobe,
+};
+
 export default function WhatWeDoCard({ item, onOpen }: Props) {
+  const image = item.image;
+  const tag = item.tag;
+  const tech = item.tech ?? [];
+  const Icon = ICONS[item.slug] ?? FiCode;
+
   return (
-    <button
-      type="button"
-      onClick={() => onOpen(item)}
-      className="relative group w-full text-left bg-[#121a32] rounded-2xl border border-white/10 p-6 md:p-8 overflow-hidden transition-all hover:scale-[1.02] hover:border-indigo-500/40 focus:outline-none focus:ring-2 focus:ring-indigo-500"
-      aria-label={`Abrir detalles de ${item.title}`}
-    >
-      <div className="absolute inset-0 -z-10 opacity-0 group-hover:opacity-100 transition-opacity bg-gradient-to-br from-indigo-500/10 via-fuchsia-500/10 to-cyan-500/10 blur-2xl" />
-      <div className="text-4xl mb-4">{item.icon}</div>
-      <h3 className="text-lg font-semibold text-white">{item.title}</h3>
-      <p className="mt-2 text-slate-300 text-sm">{item.desc}</p>
-      <span className="mt-4 inline-flex items-center gap-2 text-indigo-300 text-sm">
-        Ver más <svg width="16" height="16" viewBox="0 0 24 24" className="inline"><path fill="currentColor" d="M13.172 12L8.222 7.05l1.414-1.414L16 12l-6.364 6.364l-1.414-1.414z"/></svg>
-      </span>
-    </button>
+    <article className="h-full flex flex-col justify-between rounded-xl border border-gray-700 bg-[rgba(255,255,255,0.02)] p-6 transition transform hover:-translate-y-1 hover:shadow-lg">
+      <div>
+        {image ? (
+          <img
+            src={image}
+            alt={item.title ?? ""}
+            className="h-12 w-12 rounded-md object-cover mb-4"
+          />
+        ) : (
+          <div
+            className="h-12 w-12 rounded-full mb-4 grid place-items-center"
+            style={{ background: "rgba(90,96,99,0.06)" }}
+            aria-hidden
+          >
+            <Icon className="h-6 w-6 text-primary" />
+          </div>
+        )}
+
+        <h3 className="text-lg font-semibold text-gray-200">{item.title}</h3>
+        <p className="mt-3 text-sm text-gray-300 leading-relaxed">{item.desc}</p>
+
+        <div className="mt-4 flex flex-wrap gap-2">
+          {tech.slice(0, 3).map((t) => (
+            <span
+              key={t}
+              className="text-xs bg-[rgba(90,96,99,0.08)] px-2 py-1 rounded text-gray-200"
+            >
+              {t}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      <div className="mt-6 flex items-center justify-between">
+        <button
+          onClick={() => onOpen(item)}
+          className="inline-flex items-center rounded-md bg-primary px-4 py-2 text-sm font-semibold text-gray-200 hover:opacity-95"
+        >
+          Ver más
+        </button>
+        {tag ? (
+          <span className="text-xs uppercase tracking-wide text-gray-200">
+            {tag}
+          </span>
+        ) : null}
+      </div>
+    </article>
   );
 }

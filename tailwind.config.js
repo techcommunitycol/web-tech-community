@@ -22,6 +22,14 @@ export default {
           800: "#0A49A5", // azul intenso
           900: "#083D8A", // azul oscuro
         },
+        primary: "#36979C",
+        "primary-dark": "#36979C",
+        gray: {
+          900: "#111111",
+          600: "#5A6063",
+          300: "#B4BBBF",
+          200: "#DCE1E4",
+        },
       },
     },
   },

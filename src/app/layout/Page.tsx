@@ -4,7 +4,7 @@ import type { ReactNode } from "react";
 
 export default function Page({ children }: { children: ReactNode }) {
   return (
-    <div className="min-h-dvh flex flex-col bg-[#0b1020] text-white">
+    <div className="min-h-dvh flex flex-col bg-gray-900 text-gray-300">
       <Navbar />
       <main className="flex-1">{children}</main>
       <Footer />

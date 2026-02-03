@@ -5,6 +5,7 @@ import WhatWeDoSection from "../../features/what-we-do/sections/WhatWeDoSection"
 import AlliesSection from "../../features/allies/AlliesSection";
 import TeamSection from "../../features/team/TeamSection";
 import CalendarSection from "../../features/calendar/CalendarApp";
+import Connect from "../../features/connect/connectSection";
 
 export default function HomePage() {
   return (
@@ -15,6 +16,7 @@ export default function HomePage() {
       <AlliesSection />
       <TeamSection />
       <CalendarSection />
+      <Connect />
     </Page>
   );
 }
