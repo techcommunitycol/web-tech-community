@@ -46,7 +46,10 @@ const WeekView: React.FC<WeekViewProps> = ({
 
   return (
     <div className="w-full min-w-0 overflow-hidden">
-      <div className="grid grid-cols-7 text-center text-[10px] sm:text-[11px] md:text-xs text-gray-400 mb-1 md:mb-2 min-w-0">
+      <div
+        className="grid text-center text-[10px] sm:text-[11px] md:text-xs text-gray-400 mb-1 md:mb-2 min-w-0"
+        style={{ gridTemplateColumns: "repeat(7, minmax(0, 1fr))" }}
+      >
         {weekDates.map((date, idx) => (
           <div key={idx} className="py-2">
             <div>{WEEK_DAYS[date.getDay()]}</div>
@@ -57,7 +60,10 @@ const WeekView: React.FC<WeekViewProps> = ({
         ))}
       </div>
 
-      <div className="grid grid-cols-7 gap-px bg-gray-800/60 rounded-xl overflow-hidden min-w-0">
+      <div
+        className="grid gap-px bg-gray-800/60 rounded-xl overflow-hidden min-w-0"
+        style={{ gridTemplateColumns: "repeat(7, minmax(0, 1fr))" }}
+      >
         {weekDates.map((date, idx) => {
           const events = getEventsForDay(EVENTS, date).filter((e) => {
             if (!activeTypes.includes(e.type)) return false;
@@ -103,12 +109,12 @@ const WeekView: React.FC<WeekViewProps> = ({
                   <button
                     key={event.id}
                     onClick={() => onSelectEvent(event)}
-                    className={`group flex w-full items-center rounded-full px-1.5 py-0.5 sm:px-2 sm:py-1 text-[9px] sm:text-[10px] text-white min-w-0 ${eventColor(
+                    className={`group flex w-full min-w-0 items-center rounded-full px-1.5 py-0.5 sm:px-2 sm:py-1 text-[9px] sm:text-[10px] text-white overflow-hidden ${eventColor(
                       event.type
                     )}`}
                   >
                     <span className="mr-1 inline-block h-1 w-1 rounded-full bg-white/80 flex-shrink-0" />
-                    <span className="truncate">{event.title}</span>
+                    <span className="truncate min-w-0">{event.title}</span>
                   </button>
                 ))}
                 {events.length === 0 && (

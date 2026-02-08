@@ -180,9 +180,9 @@ const CalendarPage: React.FC = () => {
           </div>
         </div>
 
-        {/* Contenido principal */}
-        <main className="flex-1 overflow-auto min-h-0 bg-gray-900 px-2 md:px-4 lg:px-6 pb-6 pt-4">
-          <div className="w-full max-w-6xl mx-auto overflow-hidden">
+        {/* Contenido principal - overflow-x-hidden evita scroll horizontal */}
+        <main className="flex-1 overflow-x-hidden overflow-y-auto min-h-0 bg-gray-900 px-2 md:px-4 lg:px-6 pb-6 pt-4">
+          <div className="w-full max-w-6xl mx-auto overflow-hidden min-w-0">
             {viewMode === "month" && (
               <MonthView
                 currentDate={currentDate}

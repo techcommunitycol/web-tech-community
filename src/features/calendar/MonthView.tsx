@@ -51,7 +51,10 @@ const MonthView: React.FC<MonthViewProps> = ({
   return (
     <div className="w-full min-w-0 overflow-hidden">
       {/* Header días de la semana - abreviados para mobile */}
-      <div className="grid grid-cols-7 text-center text-[10px] sm:text-[11px] md:text-xs text-gray-400 mb-1 md:mb-2 min-w-0">
+      <div
+        className="grid text-center text-[10px] sm:text-[11px] md:text-xs text-gray-400 mb-1 md:mb-2 min-w-0"
+        style={{ gridTemplateColumns: "repeat(7, minmax(0, 1fr))" }}
+      >
         {WEEK_DAYS.map((d) => (
           <div key={d} className="py-2 truncate" title={d}>
             {d}
@@ -59,8 +62,11 @@ const MonthView: React.FC<MonthViewProps> = ({
         ))}
       </div>
 
-      {/* Celdas del mes - responsive sin scroll horizontal */}
-      <div className="grid grid-cols-7 gap-px bg-gray-800/60 rounded-xl overflow-hidden min-w-0">
+      {/* Celdas del mes - minmax(0,1fr) evita que columnas expandan y provoquen scroll horizontal */}
+      <div
+        className="grid gap-px bg-gray-800/60 rounded-xl overflow-hidden min-w-0"
+        style={{ gridTemplateColumns: "repeat(7, minmax(0, 1fr))" }}
+      >
         {days.map((date, idx) => {
           if (!date) {
             return (
@@ -119,12 +125,12 @@ const MonthView: React.FC<MonthViewProps> = ({
                   <button
                     key={event.id}
                     onClick={() => onSelectEvent(event)}
-                    className={`group flex w-full items-center rounded-full px-1.5 py-0.5 sm:px-2 sm:py-1 text-[9px] sm:text-[10px] text-white min-w-0 ${eventColor(
+                    className={`group flex w-full min-w-0 items-center rounded-full px-1.5 py-0.5 sm:px-2 sm:py-1 text-[9px] sm:text-[10px] text-white overflow-hidden ${eventColor(
                       event.type
                     )}`}
                   >
                     <span className="mr-1 inline-block h-1 w-1 rounded-full bg-white/80 flex-shrink-0" />
-                    <span className="truncate">{event.title}</span>
+                    <span className="truncate min-w-0">{event.title}</span>
                   </button>
                 ))}
               </div>
