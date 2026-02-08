@@ -4,6 +4,7 @@ import {
   type EventType,
   type FormatoType,
 } from "./CalendarComponents";
+import techCommunityLogo from "../../assets/logonavbarazul.png";
 
 type CalendarSidebarProps = {
   activeTypes: EventType[];
@@ -36,7 +37,11 @@ const CalendarSidebar: React.FC<CalendarSidebarProps> = ({
     <>
       <div className="h-14 flex items-center px-4 border-b border-gray-700">
         <div className="flex items-center gap-2">
-          <div className="h-8 w-8 rounded-full bg-primary/80" />
+          <img
+            src={techCommunityLogo}
+            alt="Tech Community"
+            className="h-8 w-8 object-contain"
+          />
           <span className="font-semibold text-sm text-white">
             Tech <span className="text-primary">Community</span>
           </span>
