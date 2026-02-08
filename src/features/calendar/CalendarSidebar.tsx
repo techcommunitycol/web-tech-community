@@ -13,6 +13,9 @@ type CalendarSidebarProps = {
   setActiveOwners: React.Dispatch<React.SetStateAction<string[]>>;
   activeFormatos: FormatoType[];
   setActiveFormatos: React.Dispatch<React.SetStateAction<FormatoType[]>>;
+  /** En mobile: overlay abierto/cerrado */
+  isMobileOpen?: boolean;
+  onMobileClose?: () => void;
 };
 
 const toggleItem = <T,>(prev: T[], item: T): T[] =>
@@ -26,21 +29,23 @@ const CalendarSidebar: React.FC<CalendarSidebarProps> = ({
   setActiveOwners,
   activeFormatos,
   setActiveFormatos,
+  isMobileOpen = false,
+  onMobileClose,
 }) => {
-  return (
-    <aside className="hidden md:flex md:flex-col w-64 bg-slate-950 border-r border-slate-800">
-      <div className="h-16 flex items-center px-6 border-b border-slate-800">
+  const content = (
+    <>
+      <div className="h-14 flex items-center px-4 border-b border-gray-700">
         <div className="flex items-center gap-2">
-          <div className="h-8 w-8 rounded-full bg-sky-500" />
-          <span className="font-semibold text-sm">
-            Tech <span className="text-sky-300">Community</span>
+          <div className="h-8 w-8 rounded-full bg-primary/80" />
+          <span className="font-semibold text-sm text-white">
+            Tech <span className="text-primary">Community</span>
           </span>
         </div>
       </div>
 
       <nav className="flex-1 overflow-y-auto px-3 py-4 text-sm">
         {/* Tipos de eventos */}
-        <p className="mt-6 px-2 text-xs font-semibold text-slate-500 uppercase tracking-wide mb-2">
+        <p className="mt-6 px-2 text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">
           Tipos de eventos:
         </p>
 
@@ -52,12 +57,12 @@ const CalendarSidebar: React.FC<CalendarSidebarProps> = ({
             }
             className={`flex w-full items-center justify-between rounded-md px-3 py-2 text-xs transition ${
               activeTypes.includes("language-exchange")
-                ? "bg-slate-900 text-slate-100"
-                : "bg-slate-900/40 text-slate-400"
+                ? "bg-gray-800 text-gray-100"
+                : "bg-gray-800/40 text-gray-400"
             }`}
           >
             <span>Intercambios de idiomas</span>
-            <span className="h-2.5 w-2.5 rounded-full bg-rose-600" />
+            <span className="h-2.5 w-2.5 rounded-full bg-brand-400" />
           </button>
 
           <button
@@ -67,22 +72,37 @@ const CalendarSidebar: React.FC<CalendarSidebarProps> = ({
             }
             className={`flex w-full items-center justify-between rounded-md px-3 py-2 text-xs transition ${
               activeTypes.includes("tech")
-                ? "bg-slate-900 text-slate-100"
-                : "bg-slate-900/40 text-slate-400"
+                ? "bg-gray-800 text-gray-100"
+                : "bg-gray-800/40 text-gray-400"
             }`}
           >
             <span>Eventos Tech</span>
-            <span className="h-2.5 w-2.5 rounded-full bg-emerald-600" />
+            <span className="h-2.5 w-2.5 rounded-full bg-primary" />
+          </button>
+
+          <button
+            type="button"
+            onClick={() =>
+              setActiveTypes((prev) => toggleItem(prev, "others"))
+            }
+            className={`flex w-full items-center justify-between rounded-md px-3 py-2 text-xs transition ${
+              activeTypes.includes("others")
+                ? "bg-gray-800 text-gray-100"
+                : "bg-gray-800/40 text-gray-400"
+            }`}
+          >
+            <span>Otros</span>
+            <span className="h-2.5 w-2.5 rounded-full bg-brand-600" />
           </button>
         </div>
 
         {/* Filtros */}
-        <p className="mt-6 px-2 text-xs font-semibold text-slate-500 uppercase tracking-wide mb-2">
+        <p className="mt-6 px-2 text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">
           Filtros:
         </p>
 
         {/* Organizador */}
-        <p className="px-2 text-[11px] text-slate-400 mb-1">Organizador:</p>
+        <p className="px-2 text-[11px] text-gray-400 mb-1">Organizador:</p>
         <div className="space-y-1 px-1">
           {allOwners.map((owner) => {
             const isActive = activeOwners.includes(owner);
@@ -95,8 +115,8 @@ const CalendarSidebar: React.FC<CalendarSidebarProps> = ({
                 }
                 className={`flex w-full items-center justify-between rounded-md px-3 py-1.5 text-xs transition ${
                   isActive
-                    ? "bg-slate-900 text-slate-100"
-                    : "bg-slate-900/40 text-slate-400"
+                    ? "bg-gray-800 text-gray-100"
+                    : "bg-gray-800/40 text-gray-400"
                 }`}
               >
                 <span className="truncate">{owner}</span>
@@ -109,7 +129,7 @@ const CalendarSidebar: React.FC<CalendarSidebarProps> = ({
         </div>
 
         {/* Formato */}
-        <p className="mt-6 px-2 text-[11px] text-slate-400 mb-1">Formato:</p>
+        <p className="mt-6 px-2 text-[11px] text-gray-400 mb-1">Formato:</p>
         <div className="space-y-1 px-1">
           {FORMATOS.map((formato) => {
             const isActive = activeFormatos.includes(formato);
@@ -122,8 +142,8 @@ const CalendarSidebar: React.FC<CalendarSidebarProps> = ({
                 }
                 className={`flex w-full items-center justify-between rounded-md px-3 py-1.5 text-xs transition ${
                   isActive
-                    ? "bg-slate-900 text-slate-100"
-                    : "bg-slate-900/40 text-slate-400"
+                    ? "bg-gray-800 text-gray-100"
+                    : "bg-gray-800/40 text-gray-400"
                 }`}
               >
                 <span>{formato}</span>
@@ -136,10 +156,44 @@ const CalendarSidebar: React.FC<CalendarSidebarProps> = ({
         </div>
       </nav>
 
-      <div className="border-t border-slate-800 px-4 py-3 text-xs text-slate-500">
+      <div className="border-t border-gray-700 px-4 py-3 text-xs text-gray-500">
         Eventos mensuales de tecnología e intercambios de idiomas.
       </div>
-    </aside>
+    </>
+  );
+
+  return (
+    <>
+      {/* Overlay móvil */}
+      {isMobileOpen && onMobileClose && (
+        <div
+          className="fixed inset-0 z-40 bg-black/50 lg:hidden"
+          onClick={onMobileClose}
+          aria-hidden
+        />
+      )}
+      {/* Sidebar: overlay en mobile, fijo en desktop */}
+      <aside
+        className={`
+          flex flex-col w-56 xl:w-64 flex-shrink-0 bg-gray-900 border-r border-gray-700
+          fixed lg:relative inset-y-0 left-0 z-50 lg:z-auto
+          transform transition-transform duration-200 ease-out
+          ${isMobileOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"}
+          lg:flex
+        `}
+      >
+        {onMobileClose && (
+          <button
+            onClick={onMobileClose}
+            className="lg:hidden absolute top-3 right-3 p-1 rounded text-gray-400 hover:text-white"
+            aria-label="Cerrar filtros"
+          >
+            ✕
+          </button>
+        )}
+        {content}
+      </aside>
+    </>
   );
 };
 

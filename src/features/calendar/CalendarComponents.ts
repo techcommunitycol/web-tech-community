@@ -15,23 +15,25 @@ export interface CalendarEvent {
   url?: string;
 }
 
-export const WEEK_DAYS = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
+export const WEEK_DAYS = ["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"];
+export const WEEK_DAYS_FULL = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
 
 export function getEventsForDay(events: CalendarEvent[], date: Date) {
   const iso = date.toISOString().slice(0, 10);
   return events.filter((e) => e.date === iso);
 }
 
+/** Colores del manual de marca (primary #36979C, brand palette) */
 export function eventColor(type: EventType) {
   switch (type) {
     case "tech":
-      return "bg-emerald-600 hover:bg-emerald-500";
+      return "bg-primary hover:bg-primary/90";
     case "language-exchange":
-      return "bg-rose-600 hover:bg-rose-500";
+      return "bg-brand-400 hover:bg-brand-300";
     case "others":
-      return "bg-indigo-600 hover:bg-indigo-500";
+      return "bg-brand-600 hover:bg-brand-500";
     default:
-      return "bg-sky-600 hover:bg-sky-500";
+      return "bg-primary hover:bg-primary/90";
   }
 }
 

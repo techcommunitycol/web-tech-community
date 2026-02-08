@@ -85,7 +85,7 @@ const ListView: React.FC<ListViewProps> = ({
             <button
               key={event.id}
               onClick={() => onSelectEvent(event)}
-              className="w-full text-left rounded-xl border border-slate-800 bg-slate-900 px-4 py-3 hover:border-sky-600 transition"
+              className="w-full text-left rounded-xl border border-gray-700 bg-gray-800/50 px-4 py-3 hover:border-primary hover:bg-gray-800/80 transition"
             >
               <div className="flex items-center justify-between gap-2">
                 <p className="text-sm font-semibold">{event.title}</p>
@@ -98,7 +98,7 @@ const ListView: React.FC<ListViewProps> = ({
                 </span>
               </div>
 
-              <div className="mt-1 text-[11px] text-slate-400 flex flex-wrap gap-3">
+              <div className="mt-1 text-[11px] text-gray-400 flex flex-wrap gap-3">
                 <span className="flex items-center gap-1">
                   <span>📅</span>
                   <span>
@@ -129,7 +129,7 @@ const ListView: React.FC<ListViewProps> = ({
               </div>
 
               {event.description && (
-                <p className="mt-2 text-xs text-slate-300">
+                <p className="mt-2 text-xs text-gray-300 line-clamp-2">
                   {event.description}
                 </p>
               )}
