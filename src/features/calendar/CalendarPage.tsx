@@ -16,6 +16,7 @@ import EventModal from "./CalendarEventModal";
 type ViewMode = "month" | "week" | "list";
 
 const CalendarPage: React.FC = () => {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [currentDate, setCurrentDate] = useState(
     new Date(new Date().toLocaleString("en-US", { timeZone: "America/Bogota" }))
   );
@@ -24,6 +25,7 @@ const CalendarPage: React.FC = () => {
   const [activeTypes, setActiveTypes] = useState<EventType[]>([
     "language-exchange",
     "tech",
+    "others",
   ]);
   const [searchQuery, setSearchQuery] = useState("");
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -34,7 +36,7 @@ const CalendarPage: React.FC = () => {
     ...new Set(EVENTS.map((e) => e.format as FormatoType)),
   ]);
   const today = new Date();
-  const monthLabel = currentDate.toLocaleDateString("en-US", {
+  const monthLabel = currentDate.toLocaleDateString("es-CO", {
     month: "long",
     year: "numeric",
   });
@@ -63,8 +65,8 @@ const CalendarPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-50 flex">
-      {/* Sidebar separado */}
+    <div className="min-h-screen bg-gray-900 text-gray-200 flex flex-col md:flex-row overflow-x-hidden">
+      {/* Sidebar */}
       <CalendarSidebar
         activeTypes={activeTypes}
         setActiveTypes={setActiveTypes}
@@ -73,30 +75,36 @@ const CalendarPage: React.FC = () => {
         setActiveOwners={setActiveOwners}
         activeFormatos={activeFormatos}
         setActiveFormatos={setActiveFormatos}
+        isMobileOpen={isSidebarOpen}
+        onMobileClose={() => setIsSidebarOpen(false)}
       />
 
-      <div className="flex-1 flex flex-col min-w-0">
+      <div className="flex-1 flex flex-col min-w-0 w-full overflow-hidden">
         {/* Header */}
-        <header className="h-16 flex items-center justify-between border-b border-slate-800 px-4 md:px-6 bg-slate-950">
-          <div className="flex items-center gap-2">
-            <button className="md:hidden inline-flex h-9 w-9 items-center justify-center rounded-lg border border-slate-700 text-slate-300">
-              ☰
-            </button>
+        <header className="flex-shrink-0 h-14 md:h-16 flex items-center justify-between border-b border-gray-700 px-4 md:px-6 bg-gray-900">
+          <div className="flex items-center gap-2 min-w-0">
             <div>
-              <h1 className="text-sm md:text-base font-semibold">
+              <h1 className="text-sm md:text-base font-semibold text-white truncate">
                 Calendario
               </h1>
-              <p className="text-xs text-slate-400">
+              <p className="text-xs text-gray-400 truncate">
                 Descubre nuestros eventos y explora cada uno de ellos.
               </p>
             </div>
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 flex-shrink-0">
+            <button
+              type="button"
+              onClick={() => setIsSidebarOpen(true)}
+              className="lg:hidden inline-flex items-center gap-2 rounded-lg border border-gray-600 px-3 py-1.5 text-xs text-gray-300 hover:bg-gray-800/50"
+            >
+              Filtros
+            </button>
             <button
               type="button"
               onClick={() => setIsSearchOpen((prev) => !prev)}
-              className="hidden sm:inline-flex items-center gap-2 rounded-lg border border-slate-700 px-3 py-1.5 text-xs text-slate-200 hover:bg-slate-900"
+              className="hidden sm:inline-flex items-center gap-2 rounded-lg border border-gray-600 px-3 py-1.5 text-xs text-gray-300 hover:bg-gray-800/50"
             >
               🔍 Búsqueda
             </button>
@@ -107,37 +115,35 @@ const CalendarPage: React.FC = () => {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Buscar eventos..."
-                className="hidden sm:block rounded-md border border-slate-700 bg-slate-900 px-2 py-1 text-xs text-slate-100 focus:outline-none focus:ring-1 focus:ring-sky-500"
+                className="hidden sm:block rounded-md border border-gray-600 bg-gray-900 px-2 py-1 text-xs text-gray-100 focus:outline-none focus:ring-1 focus:ring-primary"
               />
             )}
-
-            <button className="inline-flex items-center gap-2 rounded-lg bg-sky-600 px-3 py-1.5 text-xs font-medium text-white hover:bg-sky-500">
-              + Nuevo evento
-            </button>
           </div>
         </header>
 
         {/* Toolbar de navegación */}
-        <div className="border-b border-slate-800 px-4 md:px-6 py-3 flex flex-wrap items-center justify-between gap-3 bg-slate-950">
-          <div className="flex items-center gap-2">
+        <div className="flex-shrink-0 border-b border-gray-700 px-4 md:px-6 py-3 flex flex-wrap items-center justify-between gap-3 bg-gray-900">
+          <div className="flex items-center gap-1 md:gap-2">
             <button
               onClick={() => changePeriod(-1)}
-              className="inline-flex h-8 w-8 items-center justify-center rounded-full hover:bg-slate-800 text-slate-200"
+              className="inline-flex h-8 w-8 items-center justify-center rounded-full hover:bg-gray-800 text-gray-300"
+              aria-label="Mes anterior"
             >
               ‹
             </button>
             <button
               onClick={() => changePeriod(1)}
-              className="inline-flex h-8 w-8 items-center justify-center rounded-full hover:bg-slate-800 text-slate-200"
+              className="inline-flex h-8 w-8 items-center justify-center rounded-full hover:bg-gray-800 text-gray-300"
+              aria-label="Mes siguiente"
             >
               ›
             </button>
-            <span className="ml-1 text-sm md:text-base font-semibold">
+            <span className="ml-1 text-sm md:text-base font-semibold text-white">
               {monthLabel}
             </span>
             <button
               onClick={goToToday}
-              className="ml-3 rounded-md border border-slate-700 px-3 py-1 text-xs text-slate-200 hover:bg-slate-900"
+              className="ml-2 md:ml-3 rounded-md border border-gray-600 px-2 md:px-3 py-1 text-xs text-gray-300 hover:bg-gray-800"
             >
               Hoy
             </button>
@@ -146,27 +152,27 @@ const CalendarPage: React.FC = () => {
           <div className="flex items-center gap-1 text-xs">
             <button
               onClick={() => setViewMode("month")}
-              className={`rounded-md px-3 py-1 ${viewMode === "month"
-                  ? "bg-slate-800 text-slate-100"
-                  : "text-slate-400 hover:bg-slate-900"
+              className={`rounded-md px-2 md:px-3 py-1 ${viewMode === "month"
+                  ? "bg-primary text-white"
+                  : "text-gray-400 hover:bg-gray-800"
                 }`}
             >
               Mes
             </button>
             <button
               onClick={() => setViewMode("week")}
-              className={`rounded-md px-3 py-1 ${viewMode === "week"
-                  ? "bg-slate-800 text-slate-100"
-                  : "text-slate-400 hover:bg-slate-900"
+              className={`rounded-md px-2 md:px-3 py-1 ${viewMode === "week"
+                  ? "bg-primary text-white"
+                  : "text-gray-400 hover:bg-gray-800"
                 }`}
             >
               Semana
             </button>
             <button
               onClick={() => setViewMode("list")}
-              className={`rounded-md px-3 py-1 ${viewMode === "list"
-                  ? "bg-slate-800 text-slate-100"
-                  : "text-slate-400 hover:bg-slate-900"
+              className={`rounded-md px-2 md:px-3 py-1 ${viewMode === "list"
+                  ? "bg-primary text-white"
+                  : "text-gray-400 hover:bg-gray-800"
                 }`}
             >
               Todos
@@ -174,9 +180,9 @@ const CalendarPage: React.FC = () => {
           </div>
         </div>
 
-        {/* Contenido principal */}
-        <main className="flex-1 overflow-auto bg-slate-950 px-2 pb-6 pt-2 md:px-6">
-          <div className="max-w-6xl mx-auto">
+        {/* Contenido principal - overflow-x-hidden evita scroll horizontal */}
+        <main className="flex-1 overflow-x-hidden overflow-y-auto min-h-0 bg-gray-900 px-2 md:px-4 lg:px-6 pb-6 pt-4">
+          <div className="w-full max-w-6xl mx-auto overflow-hidden min-w-0">
             {viewMode === "month" && (
               <MonthView
                 currentDate={currentDate}

@@ -45,19 +45,25 @@ const WeekView: React.FC<WeekViewProps> = ({
   const query = searchQuery.trim().toLowerCase();
 
   return (
-    <>
-      <div className="grid grid-cols-7 text-center text-[11px] md:text-xs text-slate-400 mb-1 md:mb-2">
+    <div className="w-full min-w-0 overflow-hidden">
+      <div
+        className="grid text-center text-[10px] sm:text-[11px] md:text-xs text-gray-400 mb-1 md:mb-2 min-w-0"
+        style={{ gridTemplateColumns: "repeat(7, minmax(0, 1fr))" }}
+      >
         {weekDates.map((date, idx) => (
           <div key={idx} className="py-2">
             <div>{WEEK_DAYS[date.getDay()]}</div>
-            <div className="text-slate-300 text-[11px]">
+            <div className="text-gray-300 text-[11px]">
               {date.getDate()}
             </div>
           </div>
         ))}
       </div>
 
-      <div className="grid grid-cols-7 gap-px bg-slate-900/60 rounded-xl overflow-hidden">
+      <div
+        className="grid gap-px bg-gray-800/60 rounded-xl overflow-hidden min-w-0"
+        style={{ gridTemplateColumns: "repeat(7, minmax(0, 1fr))" }}
+      >
         {weekDates.map((date, idx) => {
           const events = getEventsForDay(EVENTS, date).filter((e) => {
             if (!activeTypes.includes(e.type)) return false;
@@ -85,34 +91,34 @@ const WeekView: React.FC<WeekViewProps> = ({
           return (
             <div
               key={idx}
-              className="h-40 bg-slate-950 border border-slate-900/60 px-1.5 py-1.5 flex flex-col"
+              className="min-h-[5rem] md:min-h-[6.5rem] bg-gray-900 border border-gray-800/60 px-1.5 py-1.5 flex flex-col min-w-0"
             >
-              <div className="flex items-center justify-between mb-1">
+              <div className="flex items-center justify-between mb-1 flex-shrink-0">
                 <span
-                  className={`text-[11px] text-slate-300 ${
+                  className={`text-[10px] sm:text-[11px] text-gray-300 ${
                     isTodayFlag
-                      ? "inline-flex h-5 w-5 items-center justify-center rounded-full bg-sky-600 text-[11px] font-semibold"
+                      ? "inline-flex h-5 w-5 items-center justify-center rounded-full bg-primary text-[10px] font-semibold text-white"
                       : ""
                   }`}
                 >
                   {date.getDate()}
                 </span>
               </div>
-              <div className="space-y-1 overflow-y-auto">
+              <div className="space-y-0.5 overflow-y-auto flex-1 min-h-0">
                 {events.map((event) => (
                   <button
                     key={event.id}
                     onClick={() => onSelectEvent(event)}
-                    className={`group flex w-full items-center rounded-full px-2 py-1 text-[10px] text-slate-50 ${eventColor(
+                    className={`group flex w-full min-w-0 items-center rounded-full px-1.5 py-0.5 sm:px-2 sm:py-1 text-[9px] sm:text-[10px] text-white overflow-hidden ${eventColor(
                       event.type
                     )}`}
                   >
-                    <span className="mr-1.5 inline-block h-1.5 w-1.5 rounded-full bg-slate-100" />
-                    <span className="truncate">{event.title}</span>
+                    <span className="mr-1 inline-block h-1 w-1 rounded-full bg-white/80 flex-shrink-0" />
+                    <span className="truncate min-w-0">{event.title}</span>
                   </button>
                 ))}
                 {events.length === 0 && (
-                  <span className="text-[10px] text-slate-500">
+                  <span className="text-[9px] sm:text-[10px] text-gray-500">
                     Sin eventos
                   </span>
                 )}
@@ -121,7 +127,7 @@ const WeekView: React.FC<WeekViewProps> = ({
           );
         })}
       </div>
-    </>
+    </div>
   );
 };
 
