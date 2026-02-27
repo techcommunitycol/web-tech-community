@@ -14,7 +14,11 @@ import EventModal from "./CalendarEventModal";
 
 type ViewMode = "month" | "week" | "list";
 
-const CalendarPage: React.FC = () => {
+type CalendarPageProps = {
+  embedded?: boolean;
+};
+
+const CalendarPage: React.FC<CalendarPageProps> = ({ embedded = false }) => {
   const [currentDate, setCurrentDate] = useState(
     new Date(new Date().toLocaleString("en-US", { timeZone: "America/Bogota" }))
   );
@@ -64,7 +68,11 @@ const CalendarPage: React.FC = () => {
   };
 
   return (
-    <div className="relative min-h-screen text-slate-50 flex bg-[#0b1020] overflow-hidden border-radius-lg">
+    <div
+      className={`relative flex overflow-hidden text-slate-50 ${
+        embedded ? "h-full min-h-0 rounded-2xl" : "min-h-screen"
+      }`}
+    >
       <div className="pointer-events-none absolute inset-0 -z-20 bg-[#0b1020]" />
       <div className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-b from-[rgba(54,151,156,0.18)] via-[rgba(54,151,156,0.08)] to-transparent" />
       <div className="pointer-events-none absolute inset-0 -z-10 bg-grid opacity-15 [mask-image:radial-gradient(ellipse_at_center,black,transparent_70%)]" />
@@ -72,27 +80,33 @@ const CalendarPage: React.FC = () => {
       <div className="pointer-events-none absolute -bottom-32 -right-32 h-80 w-80 rounded-full bg-[rgba(54,151,156,0.18)] blur-3xl" />
 
       <div className="relative z-10 w-full flex">
-        <CalendarSidebar
-          activeTypes={activeTypes}
-          setActiveTypes={setActiveTypes}
-          allOwners={allOwners}
-          activeOwners={activeOwners}
-          setActiveOwners={setActiveOwners}
-          activeFormatos={activeFormatos}
-          setActiveFormatos={setActiveFormatos}
-        />
+        {!embedded && (
+          <CalendarSidebar
+            activeTypes={activeTypes}
+            setActiveTypes={setActiveTypes}
+            allOwners={allOwners}
+            activeOwners={activeOwners}
+            setActiveOwners={setActiveOwners}
+            activeFormatos={activeFormatos}
+            setActiveFormatos={setActiveFormatos}
+          />
+        )}
 
-        <div className="flex-1 flex flex-col min-w-0">
-          <header className="h-16 flex items-center justify-between border-b border-white/10 px-4 md:px-6 bg-transparent">
+        <div className="flex-1 flex flex-col min-w-0 min-h-0">
+          <header className="flex h-16 items-center justify-between border-b border-white/10 bg-transparent px-4 md:px-6">
             <div className="flex items-center gap-2">
-              <button className="md:hidden inline-flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 bg-white/5 text-slate-200 hover:bg-white/10">
+              <button className="hidden md:hidden h-9 w-9 items-center justify-center rounded-lg border border-white/10 bg-white/5 text-slate-200 hover:bg-white/10">
                 ☰
               </button>
               <div>
-                <h1 className="text-sm md:text-base font-semibold">Calendario</h1>
-                <p className="text-xs text-slate-400">
-                  Descubre nuestros eventos y explora cada uno de ellos.
-                </p>
+                <h1 className="text-sm md:text-base font-semibold">
+                  {embedded ? "Eventos" : "Calendario"}
+                </h1>
+                {!embedded && (
+                  <p className="text-xs text-slate-400">
+                    Descubre nuestros eventos y explora cada uno de ellos.
+                  </p>
+                )}
               </div>
             </div>
 
@@ -176,7 +190,11 @@ const CalendarPage: React.FC = () => {
             </div>
           </div>
 
-          <main className="flex-1 overflow-auto bg-white/5 rounded-2xl border border-white/10 shadow-xl px-2 pb-6 pt-2 md:px-6 mt-4 text-white backdrop-blur-md">
+          <main
+            className={`min-h-0 flex-1 overflow-auto rounded-2xl border border-white/10 bg-white/5 px-2 pb-6 pt-2 text-white shadow-xl backdrop-blur-md md:px-6 ${
+              embedded ? "mt-3" : "mt-4"
+            }`}
+          >
             <div className="max-w-6xl mx-auto">
               {viewMode === "month" && (
                 <MonthView

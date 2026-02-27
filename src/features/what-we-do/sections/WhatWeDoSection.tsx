@@ -23,17 +23,26 @@ export default function WhatWeDoSection() {
       title="¿Qué hacemos?"
       subtitle="Iniciativas concretas y medibles para activar el ecosistema tech."
     >
-      <div className="bg-gray-900 rounded-2xl border border-gray-600 p-6 md:p-8 relative overflow-hidden">
+      <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-[linear-gradient(180deg,rgba(15,23,42,0.85),rgba(17,17,17,0.92))] p-6 shadow-[0_28px_90px_rgba(0,0,0,0.28)] md:p-8">
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/40 to-transparent" />
+        <div className="pointer-events-none absolute inset-0 bg-grid opacity-10 [mask-image:radial-gradient(circle_at_top,black,transparent_72%)]" />
         <div
-          className="pointer-events-none absolute -top-8 -right-8 h-32 w-32 rounded-full blur-2xl"
-          style={{ background: "radial-gradient(circle, var(--color-primary-rgba-12, rgba(54,151,156,0.06)), transparent 40%)" }}
+          className="pointer-events-none absolute -top-8 -right-8 h-36 w-36 rounded-full blur-3xl"
+          style={{ background: "radial-gradient(circle, rgba(54,151,156,0.16), transparent 42%)" }}
         />
+        <div className="pointer-events-none absolute bottom-[-3rem] left-1/3 h-40 w-40 rounded-full bg-[rgba(10,73,165,0.12)] blur-3xl" />
 
-        <p className="mb-6 text-sm text-gray-300 max-w-2xl">
+        <div className="relative z-10 mb-5 flex flex-wrap items-center justify-between gap-3">
+          <div className="inline-flex items-center rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">
+            Líneas de acción
+          </div>
+        </div>
+
+        <p className="relative z-10 mb-6 max-w-2xl text-sm text-gray-300">
           Diseñamos programas educativos, eventos y alianzas para reducir brechas de acceso y potenciar talento en comunidades vulnerables.
         </p>
 
-        <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 auto-rows-fr">
+        <div className="relative z-10 grid auto-rows-fr grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4">
           {WHAT_WE_DO_ITEMS.map((it) => (
             <div key={it.slug} className="h-full">
               <WhatWeDoCard item={it} onOpen={onOpen} />
@@ -47,7 +56,7 @@ export default function WhatWeDoSection() {
 
         <div className="mt-8 flex justify-end gap-3">
           <button
-            className="px-4 py-2 rounded-lg border border-gray-600 bg-[rgba(90,96,99,0.06)] text-gray-200 hover:bg-[rgba(90,96,99,0.10)]"
+            className="rounded-lg border border-white/10 bg-white/[0.04] px-4 py-2 text-gray-200 hover:bg-white/[0.08]"
             onClick={() => setOpen(false)}
           >
             Cerrar

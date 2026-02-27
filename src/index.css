@@ -1,6 +1,10 @@
 :root{
   --color-primary: #36979C;
   --color-primary-rgba-12: rgba(54,151,156,0.12);
+  --color-primary-rgba-24: rgba(54,151,156,0.24);
+  --color-accent: #0A49A5;
+  --surface-900: #0b1120;
+  --surface-800: #111827;
   --gray-900: #111111;
   --gray-600: #5A6063;
   --gray-300: #B4BBBF;
@@ -9,13 +13,30 @@
 
 /* mejorar tipografía y contraste del navbar */
 .nav-link {
-  @apply text-sm font-medium text-gray-300 hover:text-primary transition-colors;
+  @apply relative text-sm font-medium text-gray-300 transition-colors hover:text-primary;
 }
 
 /* active / focus style para links en navbar */
 .nav-link:where(.active, .aria-current) {
   @apply text-primary;
   box-shadow: 0 2px 0 0 var(--color-primary);
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -0.35rem;
+  width: 100%;
+  height: 1px;
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 180ms ease;
+  background: linear-gradient(90deg, transparent, var(--color-primary), transparent);
+}
+
+.nav-link:hover::after {
+  transform: scaleX(1);
 }
 
 /* fallback utilities si no aplicas @apply en tu pipeline: */
@@ -31,8 +52,24 @@ html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; 
 
 html, body, #root {
   min-height: 100%;
-  background: var(--gray-900);
+  background:
+    radial-gradient(circle at 10% 8%, rgba(54,151,156,0.12), transparent 22%),
+    radial-gradient(circle at 88% 12%, rgba(10,73,165,0.1), transparent 20%),
+    linear-gradient(180deg, #09101d 0%, #0d1324 22%, #111111 52%, #0c1220 100%);
   color: var(--gray-300);
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.025), transparent 14%),
+    radial-gradient(circle at 18% 18%, rgba(54,151,156,0.06), transparent 22%),
+    radial-gradient(circle at 80% 12%, rgba(10,73,165,0.06), transparent 24%),
+    radial-gradient(circle at 52% 60%, rgba(255,255,255,0.018), transparent 26%);
 }
 
 .bg-grid {
@@ -49,6 +86,42 @@ a{ color:var(--color-primary); }
   50% { transform: translateY(-6px) }
 }
 .animate-float { animation: float 6s ease-in-out infinite; }
+
+@keyframes softPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(54,151,156,0.10); }
+  50% { box-shadow: 0 0 0 10px rgba(54,151,156,0.00); }
+}
+
+.glass-panel {
+  background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.025));
+  border: 1px solid rgba(255,255,255,0.08);
+  backdrop-filter: blur(14px);
+}
+
+.tech-border {
+  position: relative;
+}
+
+.tech-border::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    135deg,
+    rgba(255,255,255,0.14),
+    rgba(54,151,156,0.18),
+    rgba(10,73,165,0.16),
+    rgba(255,255,255,0.05)
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  pointer-events: none;
+}
 
 @keyframes fadeUp { from {opacity:.0; transform: translateY(10px)} to {opacity:1; transform: translateY(0)} }
 .team-appear { animation: fadeUp .5s ease forwards; }
@@ -89,12 +162,6 @@ a{ color:var(--color-primary); }
   filter: drop-shadow(0 10px 18px rgba(0,0,0,.25));
 }
 
-@keyframes float {
-  0%   { transform: translateY(0) }
-  50%  { transform: translateY(-6px) }
-  100% { transform: translateY(0) }
-}
-
 @keyframes spin {
   to { transform: rotate(1turn) }
 }
@@ -103,4 +170,3 @@ a{ color:var(--color-primary); }
   position: absolute; border-radius: 50%; filter: blur(35px); opacity: .35;
   animation: float 8s ease-in-out infinite;
 }
-

@@ -21,18 +21,18 @@ export default function WhatWeDoCard({ item, onOpen }: Props) {
   const Icon = ICONS[item.slug] ?? FiCode;
 
   return (
-    <article className="h-full flex flex-col justify-between rounded-xl border border-gray-700 bg-[rgba(255,255,255,0.02)] p-6 transition transform hover:-translate-y-1 hover:shadow-lg">
+    <article className="group relative flex h-full flex-col justify-between overflow-hidden rounded-2xl border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.04),rgba(255,255,255,0.02))] p-6 shadow-[0_14px_40px_rgba(0,0,0,0.16)] transition duration-300 hover:-translate-y-1 hover:border-primary/20 hover:shadow-[0_24px_60px_rgba(54,151,156,0.12)]">
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/35 to-transparent" />
       <div>
         {image ? (
           <img
             src={image}
             alt={item.title ?? ""}
-            className="h-12 w-12 rounded-md object-cover mb-4"
+            className="mb-4 h-12 w-12 rounded-xl object-cover ring-1 ring-white/10"
           />
         ) : (
           <div
-            className="h-12 w-12 rounded-full mb-4 grid place-items-center"
-            style={{ background: "rgba(90,96,99,0.06)" }}
+            className="mb-4 grid h-12 w-12 place-items-center rounded-xl border border-primary/15 bg-primary/10 shadow-[0_0_20px_rgba(54,151,156,0.1)]"
             aria-hidden
           >
             <Icon className="h-6 w-6 text-primary" />
@@ -46,7 +46,7 @@ export default function WhatWeDoCard({ item, onOpen }: Props) {
           {tech.slice(0, 3).map((t) => (
             <span
               key={t}
-              className="text-xs bg-[rgba(90,96,99,0.08)] px-2 py-1 rounded text-gray-200"
+              className="rounded-full border border-white/10 bg-white/[0.04] px-2.5 py-1 text-xs text-gray-200"
             >
               {t}
             </span>
@@ -57,12 +57,12 @@ export default function WhatWeDoCard({ item, onOpen }: Props) {
       <div className="mt-6 flex items-center justify-between">
         <button
           onClick={() => onOpen(item)}
-          className="inline-flex items-center rounded-md bg-primary px-4 py-2 text-sm font-semibold text-gray-200 hover:opacity-95"
+          className="inline-flex items-center rounded-xl border border-primary/30 bg-primary px-4 py-2 text-sm font-semibold text-gray-200 shadow-[0_12px_28px_rgba(54,151,156,0.14)] hover:opacity-95"
         >
           Ver más
         </button>
         {tag ? (
-          <span className="text-xs uppercase tracking-wide text-gray-200">
+          <span className="rounded-full border border-white/10 bg-white/[0.03] px-2.5 py-1 text-[11px] uppercase tracking-wide text-gray-200">
             {tag}
           </span>
         ) : null}

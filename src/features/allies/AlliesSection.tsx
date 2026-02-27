@@ -34,24 +34,32 @@ export default function AlliesSection() {
       <div className="relative">
         <div
           className="pointer-events-none absolute -top-12 -left-12 h-40 w-40 rounded-full blur-3xl"
-          style={{ background: "radial-gradient(circle, var(--color-primary-rgba-12, rgba(54,151,156,0.06)), transparent 45%)" }}
+          style={{ background: "radial-gradient(circle, rgba(54,151,156,0.14), transparent 45%)" }}
         />
         <div
           className="pointer-events-none absolute -bottom-14 -right-14 h-36 w-36 rounded-full blur-2xl"
-          style={{ background: "radial-gradient(circle, rgba(90,96,99,0.06), transparent 45%)" }}
+          style={{ background: "radial-gradient(circle, rgba(10,73,165,0.12), transparent 45%)" }}
         />
 
-        <div className="bg-gray-900 rounded-2xl border border-gray-600 p-6 md:p-8">
-          <p className="mb-6 text-sm text-gray-300 max-w-3xl">
+        <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-[linear-gradient(180deg,rgba(15,23,42,0.82),rgba(17,17,17,0.92))] p-6 shadow-[0_28px_90px_rgba(0,0,0,0.26)] md:p-8">
+          <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/40 to-transparent" />
+          <div className="pointer-events-none absolute inset-0 bg-grid opacity-10 [mask-image:radial-gradient(circle_at_top,black,transparent_72%)]" />
+
+          <div className="relative z-10 mb-5 inline-flex items-center rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">
+            Red colaborativa
+          </div>
+
+          <p className="relative z-10 mb-6 max-w-3xl text-sm text-gray-300">
             Trabajamos con comunidades que comparten valores: educación abierta, mentoría y colaboración para generar oportunidades.
           </p>
 
-          <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-4">
+          <div className="relative z-10 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-4">
             {firstRow.map((a) => {
               const logo = (a as any).logo as string | undefined;
               const name = a.name ?? "";
-              const href = (a as any).link ?? (a as any).website ?? "#";
+              const href = (a as any).link ?? (a as any).website ?? (a as any).url ?? "#";
               const Icon = pickIcon(name);
+              const desc = (a as any).desc as string | undefined;
 
               return (
                 <a
@@ -59,34 +67,37 @@ export default function AlliesSection() {
                   href={href}
                   target="_blank"
                   rel="noreferrer"
-                  className="flex flex-col items-center gap-3 rounded-xl border border-primary bg-[rgba(255,255,255,0.02)] backdrop-blur-sm p-4 text-center transition transform hover:scale-[1.02] focus:outline-none"
+                  className="group flex flex-col items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.03] p-5 text-center shadow-[0_14px_40px_rgba(0,0,0,0.14)] backdrop-blur-sm transition duration-300 hover:-translate-y-1 hover:border-primary/20 hover:shadow-[0_24px_60px_rgba(54,151,156,0.1)] focus:outline-none"
                 >
                   <div
-                    className="h-14 w-14 flex items-center justify-center rounded-full shrink-0"
-                    style={{ background: "rgba(90,96,99,0.06)" }}
+                    className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.04]"
                     aria-hidden
                   >
                     {logo ? (
-                      <img src={logo} alt={name} className="h-10 w-10 object-contain" />
+                      <img src={logo} alt={name} className="h-11 w-11 object-contain transition duration-300 group-hover:scale-105" />
                     ) : (
                       <Icon className="h-8 w-8" style={{ color: "var(--color-primary)" }} />
                     )}
                   </div>
 
                   <span className="text-sm font-medium text-gray-200">{name}</span>
+                  {desc ? (
+                    <span className="line-clamp-3 text-xs leading-relaxed text-gray-400">{desc}</span>
+                  ) : null}
                 </a>
               );
             })}
           </div>
 
           {secondRow.length > 0 && (
-            <div className="mt-6 md:mt-8 md:col-span-4 flex justify-center">
-              <div className="grid gap-4 grid-cols-1 sm:grid-cols-3 max-w-3xl w-full">
+            <div className="relative z-10 mt-6 flex justify-center md:mt-8 md:col-span-4">
+              <div className="grid w-full max-w-4xl grid-cols-1 gap-4 sm:grid-cols-3">
                 {secondRow.map((a) => {
                   const logo = (a as any).logo as string | undefined;
                   const name = a.name ?? "";
-                  const href = (a as any).link ?? (a as any).website ?? "#";
+                  const href = (a as any).link ?? (a as any).website ?? (a as any).url ?? "#";
                   const Icon = pickIcon(name);
+                  const desc = (a as any).desc as string | undefined;
 
                   return (
                     <a
@@ -94,21 +105,23 @@ export default function AlliesSection() {
                       href={href}
                       target="_blank"
                       rel="noreferrer"
-                      className="flex flex-col items-center gap-3 rounded-xl border border-primary bg-[rgba(255,255,255,0.02)] backdrop-blur-sm p-4 text-center transition transform hover:scale-[1.02] focus:outline-none"
+                      className="group flex flex-col items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.03] p-5 text-center shadow-[0_14px_40px_rgba(0,0,0,0.14)] backdrop-blur-sm transition duration-300 hover:-translate-y-1 hover:border-primary/20 hover:shadow-[0_24px_60px_rgba(54,151,156,0.1)] focus:outline-none"
                     >
                       <div
-                        className="h-14 w-14 flex items-center justify-center rounded-full shrink-0"
-                        style={{ background: "rgba(90,96,99,0.06)" }}
+                        className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.04]"
                         aria-hidden
                       >
                         {logo ? (
-                          <img src={logo} alt={name} className="h-10 w-10 object-contain" />
+                          <img src={logo} alt={name} className="h-11 w-11 object-contain transition duration-300 group-hover:scale-105" />
                         ) : (
                           <Icon className="h-8 w-8" style={{ color: "var(--color-primary)" }} />
                         )}
                       </div>
 
                       <span className="text-sm font-medium text-gray-200">{name}</span>
+                      {desc ? (
+                        <span className="line-clamp-3 text-xs leading-relaxed text-gray-400">{desc}</span>
+                      ) : null}
                     </a>
                   );
                 })}
