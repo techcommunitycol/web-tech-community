@@ -73,7 +73,7 @@ export default function AdminPage() {
   useEffect(() => {
     const session = localStorage.getItem("adminSession");
     if (!session) {
-      navigate("/login");
+      navigate("/orion");
       return;
     }
     setCreatedEventsCount(getCreatedEventsCount());

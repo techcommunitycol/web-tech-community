@@ -8,6 +8,6 @@ import AdminPage from "../../pages/AdminPage";
 export const router = createBrowserRouter([
   { path: "/", element: <HomePage /> },
   { path: "/team/:slug", element: <TeamMemberPage /> },
-  { path: "/login", element: <LoginPage /> },
+  { path: "/orion", element: <LoginPage /> },
   { path: "/admin", element: <AdminPage /> },
 ]);
