@@ -1,6 +1,6 @@
 import type { CalendarEvent } from "./CalendarComponents";
 
-export const EVENTS: CalendarEvent[] = [
+const BASE_EVENTS: CalendarEvent[] = [
   {
     id: "1",
     title: "Intercambio de idiomas",
@@ -38,3 +38,18 @@ export const EVENTS: CalendarEvent[] = [
     url: "",
   },
 ];
+
+function getLocalEvents(): CalendarEvent[] {
+  try {
+    const local = localStorage.getItem("calendarEvents");
+    if (!local) return [];
+    const parsed = JSON.parse(local);
+    return Array.isArray(parsed) ? parsed : [];
+  } catch {
+    return [];
+  }
+}
+
+export function getCalendarEvents(): CalendarEvent[] {
+  return [...BASE_EVENTS, ...getLocalEvents()];
+}

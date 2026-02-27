@@ -1,6 +1,5 @@
 // src/features/calendar/MonthView.tsx
 import React, { useMemo } from "react";
-import { EVENTS } from "./CalendarData";
 import {
   WEEK_DAYS,
   getEventsForDay,
@@ -18,6 +17,7 @@ interface MonthViewProps {
   activeOwners: string[];
   activeFormatos: FormatoType[];
   searchQuery: string;
+  events: CalendarEvent[];
   onSelectEvent: (event: CalendarEvent) => void;
 }
 
@@ -28,6 +28,7 @@ const MonthView: React.FC<MonthViewProps> = ({
   activeOwners,
   activeFormatos,
   searchQuery,
+  events,
   onSelectEvent,
 }) => {
   const { days } = useMemo(() => {
@@ -68,7 +69,7 @@ const MonthView: React.FC<MonthViewProps> = ({
             );
           }
 
-          const events = getEventsForDay(EVENTS, date).filter((e) => {
+          const dayEvents = getEventsForDay(events, date).filter((e) => {
             // 1) tipo
             if (!activeTypes.includes(e.type)) return false;
 
@@ -115,7 +116,7 @@ const MonthView: React.FC<MonthViewProps> = ({
               </div>
 
               <div className="space-y-1 overflow-y-auto">
-                {events.map((event) => (
+                {dayEvents.map((event) => (
                   <button
                     key={event.id}
                     onClick={() => onSelectEvent(event)}

@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import {
   getUniqueOwners,
   type CalendarEvent,
   type EventType,
   type FormatoType,
 } from "./CalendarComponents";
-import { EVENTS } from "./CalendarData";
+import { getCalendarEvents } from "./CalendarData";
 import MonthView from "./MonthView";
 import WeekView from "./WeekView";
 import ListView from "./ListView";
@@ -26,11 +26,12 @@ const CalendarPage: React.FC = () => {
   ]);
   const [searchQuery, setSearchQuery] = useState("");
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const events = useMemo(() => getCalendarEvents(), []);
 
-  const allOwners = getUniqueOwners(EVENTS);
+  const allOwners = getUniqueOwners(events);
   const [activeOwners, setActiveOwners] = useState<string[]>(allOwners);
   const [activeFormatos, setActiveFormatos] = useState<FormatoType[]>([
-    ...new Set(EVENTS.map((e) => e.format as FormatoType)),
+    ...new Set(events.map((e) => e.format as FormatoType)),
   ]);
 
   const today = new Date();
@@ -185,6 +186,7 @@ const CalendarPage: React.FC = () => {
                   activeOwners={activeOwners}
                   activeFormatos={activeFormatos}
                   searchQuery={searchQuery}
+                  events={events}
                   onSelectEvent={setSelectedEvent}
                 />
               )}
@@ -197,6 +199,7 @@ const CalendarPage: React.FC = () => {
                   activeOwners={activeOwners}
                   activeFormatos={activeFormatos}
                   searchQuery={searchQuery}
+                  events={events}
                   onSelectEvent={setSelectedEvent}
                 />
               )}
@@ -208,6 +211,7 @@ const CalendarPage: React.FC = () => {
                   activeOwners={activeOwners}
                   activeFormatos={activeFormatos}
                   searchQuery={searchQuery}
+                  events={events}
                   onSelectEvent={setSelectedEvent}
                 />
               )}
