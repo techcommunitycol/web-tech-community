@@ -37,6 +37,18 @@ const BASE_EVENTS: CalendarEvent[] = [
     description: "Principios fundamentales para trabajar con coding assistant.",
     url: "",
   },
+    {
+    id: "4",
+    title: "IWD 2026",
+    date: "2026-03-06",
+    location: "GDG Medellín",
+    time: "08:00 AM",
+    type: "tech",
+    owner: "WTM, Pioneras Dev",
+    format: "Presencial",
+    description: "Evento presencial para celebrar el Día Internacional de la Mujer en Tecnología.",
+    url: "",
+  },
 ];
 
 function getLocalEvents(): CalendarEvent[] {
