@@ -28,18 +28,8 @@ const CalendarSidebar: React.FC<CalendarSidebarProps> = ({
   setActiveFormatos,
 }) => {
   return (
-    <aside className="hidden md:flex md:flex-col w-64 bg-slate-950 border-r border-slate-800">
-      <div className="h-16 flex items-center px-6 border-b border-slate-800">
-        <div className="flex items-center gap-2">
-          <div className="h-8 w-8 rounded-full bg-sky-500" />
-          <span className="font-semibold text-sm">
-            Tech <span className="text-sky-300">Community</span>
-          </span>
-        </div>
-      </div>
-
+    <aside className="hidden md:flex md:flex-col w-64 bg-slate-10 border-r border-slate-800">
       <nav className="flex-1 overflow-y-auto px-3 py-4 text-sm">
-        {/* Tipos de eventos */}
         <p className="mt-6 px-2 text-xs font-semibold text-slate-500 uppercase tracking-wide mb-2">
           Tipos de eventos:
         </p>

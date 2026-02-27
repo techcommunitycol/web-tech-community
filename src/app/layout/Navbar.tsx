@@ -1,9 +1,11 @@
 import { useState } from "react";
+import CalendarModal from "../../features/calendar/CalendarModal";
 import { NAV_LINKS } from "../../shared/lib/constants";
 import techCommunityLogoSinFondo from "../../assets/techCommunityLogoSinFondo.png";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const [calendarOpen, setCalendarOpen] = useState(false);
   const closeMenu = () => setOpen(false);
 
   return (
@@ -31,7 +33,16 @@ export default function Navbar() {
           >
             Contáctanos
           </a>
-
+        <button
+            type="button"
+            onClick={() => setCalendarOpen(true)}
+            className="inline-flex items-center gap-2 rounded-md bg-primary px-4 py-2 text-sm font-semibold text-white shadow-lg hover:bg-primary/90 focus:outline-none transition"
+            title="Calendario de eventos"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3.75 7.5h16.5M4.5 21h15a1.5 1.5 0 001.5-1.5V7.5a1.5 1.5 0 00-1.5-1.5h-15A1.5 1.5 0 003 7.5v12A1.5 1.5 0 004.5 21z" />
+            </svg>
+          </button>
         </div>
 
         <button
@@ -45,7 +56,8 @@ export default function Navbar() {
         </button>
       </nav>
 
-      {open && (
+  <CalendarModal open={calendarOpen} onClose={() => setCalendarOpen(false)} />
+  {open && (
         <div
           className="fixed inset-0 z-40 bg-gray-900/95 backdrop-blur-sm overflow-y-auto min-h-[100dvh] w-full"
           onClick={closeMenu}
@@ -111,6 +123,17 @@ export default function Navbar() {
                   </a>
                 );
               })}
+              <button
+                type="button"
+                onClick={() => { setCalendarOpen(true); closeMenu(); }}
+                className="flex items-center gap-2 px-4 py-3 rounded-lg text-lg font-semibold bg-gradient-to-r from-sky-500 to-blue-600 text-white shadow-lg hover:from-sky-400 hover:to-blue-500 transition mt-2"
+                title="Calendario de eventos"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3.75 7.5h16.5M4.5 21h15a1.5 1.5 0 001.5-1.5V7.5a1.5 1.5 0 00-1.5-1.5h-15A1.5 1.5 0 003 7.5v12A1.5 1.5 0 004.5 21z" />
+                </svg>
+                Calendario
+              </button>
             <div className="p-4 border-t border-gray-800">
               <a
                 href="#connect"

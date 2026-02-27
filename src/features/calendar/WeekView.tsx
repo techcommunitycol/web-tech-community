@@ -1,4 +1,3 @@
-// src/features/calendar/WeekView.tsx
 import React, { useMemo } from "react";
 import { EVENTS } from "./CalendarData";
 import {
@@ -103,11 +102,8 @@ const WeekView: React.FC<WeekViewProps> = ({
                   <button
                     key={event.id}
                     onClick={() => onSelectEvent(event)}
-                    className={`group flex w-full items-center rounded-full px-2 py-1 text-[10px] text-slate-50 ${eventColor(
-                      event.type
-                    )}`}
+                    className={`group flex w-full items-center rounded-full px-2 py-1 text-[10px] text-slate-50 font-semibold shadow-sm ${eventColor(event.type)}`}
                   >
-                    <span className="mr-1.5 inline-block h-1.5 w-1.5 rounded-full bg-slate-100" />
                     <span className="truncate">{event.title}</span>
                   </button>
                 ))}
