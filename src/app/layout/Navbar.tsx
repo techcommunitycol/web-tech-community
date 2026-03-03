@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { NAV_LINKS } from "../../shared/lib/constants";
 import techCommunityLogoSinFondo from "../../assets/techCommunityLogoSinFondo.png";
 
@@ -7,47 +8,71 @@ export default function Navbar() {
   const closeMenu = () => setOpen(false);
 
   return (
-    <header className="fixed md:static top-0 left-0 right-0 z-50 bg-gray-900/80">
-      <nav className="container mx-auto flex items-center justify-between px-4 py-3 md:py-4">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-[linear-gradient(90deg,rgba(7,12,24,0.94),rgba(12,20,38,0.9),rgba(7,12,24,0.94))] shadow-[0_10px_40px_rgba(0,0,0,0.22)] backdrop-blur-xl md:static">
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+      <nav className="relative flex items-center justify-between overflow-hidden px-4 py-3 md:px-6 md:py-4">
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/45 to-transparent" />
+        <div className="pointer-events-none absolute inset-y-0 left-0 w-32 bg-[radial-gradient(circle_at_left,rgba(54,151,156,0.12),transparent_65%)] md:w-40" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 w-32 bg-[radial-gradient(circle_at_right,rgba(10,73,165,0.12),transparent_65%)] md:w-40" />
         <div className="flex items-center gap-4">
-          <a href="/" className="inline-flex items-center gap-5 ml-8 md:ml-16">
+          <a href="/" className="inline-flex items-center gap-5">
             <img 
             src={techCommunityLogoSinFondo} 
             alt="TechCommunity" 
-            className="h-10 md:h-14 lg:h-11 w-auto"
+            className="h-10 w-auto drop-shadow-[0_0_18px_rgba(54,151,156,0.2)] md:h-14 lg:h-11"
             />
           </a>
         </div>
 
-        <div className="hidden md:flex items-center gap-6">
+        <div className="relative z-10 hidden md:flex items-center gap-4 lg:gap-6">
           {NAV_LINKS.map((l) => (
             <a key={l.href} href={l.href} className="nav-link">
               {l.label}
             </a>
           ))}
+          <Link
+            to="/calendar"
+            className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/[0.05] px-4 py-2 text-sm font-semibold text-white shadow-lg transition hover:border-primary/30 hover:bg-white/[0.08] focus:outline-none"
+            title="Calendario de eventos"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3.75 7.5h16.5M4.5 21h15a1.5 1.5 0 001.5-1.5V7.5a1.5 1.5 0 00-1.5-1.5h-15A1.5 1.5 0 003 7.5v12A1.5 1.5 0 004.5 21z" />
+            </svg>
+            <span>Calendario</span>
+          </Link>
           <a
             href="#connect"
-            className="ml-2 inline-flex items-center rounded-md bg-primary px-4 py-2 text-sm font-semibold text-white shadow-sm hover:brightness-95 focus:outline-none"
+            className="ml-2 inline-flex items-center rounded-xl border border-primary/30 bg-primary px-4 py-2 text-sm font-semibold text-white shadow-[0_12px_28px_rgba(54,151,156,0.2)] transition hover:brightness-95 focus:outline-none"
           >
             Contáctanos
           </a>
-
         </div>
 
-        <button
-          onClick={() => setOpen((s) => !s)}
-          className="md:hidden inline-flex items-center justify-center p-2 rounded-md text-gray-200 hover:bg-[rgba(255,255,255,0.03)]"
-          aria-label="Abrir menú"
-        >
-          <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-            <path strokeLinecap="round" strokeLinejoin="round" d={open ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"} />
-          </svg>
-        </button>
+        <div className="relative z-10 flex items-center gap-2 md:hidden">
+          <Link
+            to="/calendar"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/[0.05] text-white shadow-lg transition hover:border-primary/30 hover:bg-white/[0.08] focus:outline-none"
+            title="Calendario de eventos"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3.75 7.5h16.5M4.5 21h15a1.5 1.5 0 001.5-1.5V7.5a1.5 1.5 0 00-1.5-1.5h-15A1.5 1.5 0 003 7.5v12A1.5 1.5 0 004.5 21z" />
+            </svg>
+          </Link>
+          <button
+            onClick={() => setOpen((s) => !s)}
+            className="inline-flex items-center justify-center rounded-xl border border-white/10 bg-white/[0.05] p-2 text-gray-200 hover:bg-[rgba(255,255,255,0.08)]"
+            aria-label="Abrir menú"
+          >
+            <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+              <path strokeLinecap="round" strokeLinejoin="round" d={open ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"} />
+            </svg>
+          </button>
+        </div>
       </nav>
 
-      {open && (
+  {open && (
         <div
-          className="fixed inset-0 z-40 bg-gray-900/95 backdrop-blur-sm overflow-y-auto min-h-[100dvh] w-full"
+          className="fixed inset-0 z-40 bg-gray-950/95 backdrop-blur-md overflow-y-auto min-h-[100dvh] w-full"
           onClick={closeMenu}
           style={{
             WebkitOverflowScrolling: 'touch',
@@ -60,18 +85,18 @@ export default function Navbar() {
             className="relative w-full min-h-full flex flex-col"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="flex items-center justify-between p-4 border-b border-gray-800">
+            <div className="flex items-center justify-between border-b border-white/10 p-4">
               <div className="flex items-center">
                 <img 
                   src={techCommunityLogoSinFondo} 
                   alt="TechCommunity" 
-                  className="h-10 w-auto"
+                  className="h-10 w-auto drop-shadow-[0_0_16px_rgba(54,151,156,0.18)]"
                 />
               </div>
               <button
                 onClick={closeMenu}
                 aria-label="Cerrar menú"
-                className="p-2 text-gray-400 hover:text-white rounded-full hover:bg-gray-800 transition-colors"
+                className="rounded-full border border-white/10 p-2 text-gray-400 transition-colors hover:bg-white/5 hover:text-white"
               >
                 <svg
                   className="h-6 w-6"
@@ -93,10 +118,10 @@ export default function Navbar() {
                     key={`mobile-${link.href}`}
                     href={link.href}
                     onClick={closeMenu}
-                    className={`flex items-center px-4 py-3 rounded-lg text-lg font-medium transition-colors ${
+                    className={`flex items-center rounded-xl px-4 py-3 text-lg font-medium transition-colors ${
                       isActive 
-                        ? 'bg-primary/10 text-primary' 
-                        : 'text-gray-200 hover:bg-gray-800/50'
+                        ? 'bg-primary/10 text-primary ring-1 ring-primary/20' 
+                        : 'text-gray-200 hover:bg-white/5'
                     }`}
                     aria-current={isActive ? 'page' : undefined}
                   >
@@ -111,11 +136,22 @@ export default function Navbar() {
                   </a>
                 );
               })}
-            <div className="p-4 border-t border-gray-800">
+              <Link
+                to="/calendar"
+                onClick={closeMenu}
+                className="mt-2 flex items-center gap-2 rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3 text-lg font-medium text-gray-200 transition hover:border-primary/20 hover:bg-white/[0.05]"
+                title="Calendario de eventos"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="h-5 w-5">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3.75 7.5h16.5M4.5 21h15a1.5 1.5 0 001.5-1.5V7.5a1.5 1.5 0 00-1.5-1.5h-15A1.5 1.5 0 003 7.5v12A1.5 1.5 0 004.5 21z" />
+                </svg>
+                Calendario
+              </Link>
+            <div className="border-t border-white/10 p-4">
               <a
                 href="#connect"
                 onClick={closeMenu}
-                className="w-full flex items-center justify-center px-6 py-3 rounded-xl bg-primary text-white font-semibold hover:bg-primary/90 transition-colors shadow-lg hover:shadow-primary/20"
+                className="flex w-full items-center justify-center rounded-xl bg-primary px-6 py-3 font-semibold text-white shadow-lg transition-colors hover:bg-primary/90 hover:shadow-primary/20"
               >
                 <span>Contáctanos</span>
                 <svg className="ml-2 h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">

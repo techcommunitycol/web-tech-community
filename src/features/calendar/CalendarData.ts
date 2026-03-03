@@ -1,69 +1,67 @@
 import type { CalendarEvent } from "./CalendarComponents";
 
-export const EVENTS: CalendarEvent[] = [
+const BASE_EVENTS: CalendarEvent[] = [
   {
     id: "1",
-    title: "Charla IA + C&T",
-    date: "2025-11-12",
-    location: "Centro Empresarial",
-    time: "10:00 AM – 4:00 PM",
-    type: "tech",
+    title: "Intercambio de idiomas",
+    date: "2026-02-23",
+    location: "On Going",
+    time: "5:30 PM",
+    type: "language-exchange",
     owner: "Tech Community",
     format: "Presencial",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer porta leo nibh, at pretium lacus faucibus sed. Mauris ullamcorper augue id lorem molestie pulvinar. Etiam quis vulputate dolor, sit amet fringilla ipsum. Proin ultricies massa at justo cursus, sed eleifend urna vestibulum. Integer luctus lectus ut enim venenatis tempor.",
-    url:
-      "https://gdg.community.dev/events/details/google-gdg-medellin-presents-google-devfest-medellin-2025/",
+    description: "Intercambio de idiomas para practicar y conocer nuevas culturas.",
+    url: "",
   },
   {
     id: "2",
-    title: "Intercambio de idiomas",
-    date: "2025-11-14",
-    location: "Centro Empresarial",
-    time: "10:00 AM – 4:00 PM",
-    type: "language-exchange",
+    title: "Evento virtual con Sebastián (GDE)",
+    date: "2026-02-25",
+    location: "Online",
+    time: "7:00 PM",
+    type: "tech",
     owner: "Tech Community",
-    format: "Presencial",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer porta leo nibh, at pretium lacus faucibus sed. Mauris ullamcorper augue id lorem molestie pulvinar. Etiam quis vulputate dolor, sit amet fringilla ipsum. Proin ultricies massa at justo cursus, sed eleifend urna vestibulum. Integer luctus lectus ut enim venenatis tempor.",
-    url:
-      "https://gdg.community.dev/events/details/google-gdg-medellin-presents-google-devfest-medellin-2025/",
+    format: "Virtual",
+    description: "Evento virtual con Sebastián, Google Developer Expert.",
+    url: "",
   },
   {
     id: "3",
-    title: "Devfest Medellín",
-    date: "2025-11-29",
-    location: "Hybrid",
-    time: "6:00 PM – 8:00 PM",
+    title: "Evento presencial GDG: Principios fundamentales para trabajar con coding assistant",
+    date: "2026-02-21",
+    location: "GDG Medellín",
+    time: "10:00 AM",
     type: "tech",
-    owner: "GDG Medellin",
+    owner: "GDG Medellín",
     format: "Presencial",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer porta leo nibh, at pretium lacus faucibus sed. Mauris ullamcorper augue id lorem molestie pulvinar. Etiam quis vulputate dolor, sit amet fringilla ipsum. Proin ultricies massa at justo cursus, sed eleifend urna vestibulum. Integer luctus lectus ut enim venenatis tempor.",
-    url:
-      "https://gdg.community.dev/events/details/google-gdg-medellin-presents-google-devfest-medellin-2025/",
+    description: "Principios fundamentales para trabajar con coding assistant.",
+    url: "",
   },
-  {
+    {
     id: "4",
-    title: "Intercambio de idiomas",
-    date: "2025-11-24",
-    location: "Remote",
-    time: "10:00 AM – 4:00 PM",
-    type: "language-exchange",
-    owner: "Tech Community",
-    format: "Híbrido",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer porta leo nibh, at pretium lacus faucibus sed. Mauris ullamcorper augue id lorem molestie pulvinar. Etiam quis vulputate dolor, sit amet fringilla ipsum. Proin ultricies massa at justo cursus, sed eleifend urna vestibulum. Integer luctus lectus ut enim venenatis tempor.",
-    url:
-      "https://gdg.community.dev/events/details/google-gdg-medellin-presents-google-devfest-medellin-2025/",
-  },
-  {
-    id: "5",
-    title: "GOOGLE I/O Medellín",
-    date: "2025-11-19",
-    location: "Hybrid",
-    time: "6:00 PM – 8:00 PM",
+    title: "IWD 2026",
+    date: "2026-03-06",
+    location: "GDG Medellín",
+    time: "08:00 AM",
     type: "tech",
-    owner: "GDG Medellin",
-    format: "Virtual",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer porta leo nibh, at pretium lacus faucibus sed. Mauris ullamcorper augue id lorem molestie pulvinar. Etiam quis vulputate dolor, sit amet fringilla ipsum. Proin ultricies massa at justo cursus, sed eleifend urna vestibulum. Integer luctus lectus ut enim venenatis tempor.",
-    url:
-      "https://gdg.community.dev/events/details/google-gdg-medellin-presents-google-devfest-medellin-2025/",
+    owner: "WTM, Pioneras Dev",
+    format: "Presencial",
+    description: "Evento presencial para celebrar el Día Internacional de la Mujer en Tecnología.",
+    url: "",
   },
 ];
+
+function getLocalEvents(): CalendarEvent[] {
+  try {
+    const local = localStorage.getItem("calendarEvents");
+    if (!local) return [];
+    const parsed = JSON.parse(local);
+    return Array.isArray(parsed) ? parsed : [];
+  } catch {
+    return [];
+  }
+}
+
+export function getCalendarEvents(): CalendarEvent[] {
+  return [...BASE_EVENTS, ...getLocalEvents()];
+}

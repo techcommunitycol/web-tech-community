@@ -62,16 +62,29 @@ export default function TeamCarousel() {
 
   return (
     <section
-      className="relative mt-8"
+      className="relative mt-8 overflow-hidden rounded-3xl border border-white/10 bg-[linear-gradient(180deg,rgba(15,23,42,0.75),rgba(17,17,17,0.85))] px-3 py-5 shadow-[0_24px_80px_rgba(0,0,0,0.22)] sm:px-4 sm:py-6"
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
     >
-      <div className="pointer-events-none absolute inset-y-0 left-0 w-16 bg-gradient-to-r  from-gray-900 to-transparent" />
-      <div className="pointer-events-none absolute inset-y-0 right-0 w-16 bg-gradient-to-l  from-gray-900 to-transparent" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/40 to-transparent" />
+      <div className="pointer-events-none absolute inset-0 bg-grid opacity-10 [mask-image:radial-gradient(circle_at_top,black,transparent_72%)]" />
+      <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-12 bg-gradient-to-r from-[rgba(15,23,42,0.95)] to-transparent sm:w-16" />
+      <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-12 bg-gradient-to-l from-[rgba(15,23,42,0.95)] to-transparent sm:w-16" />
+
+      <div className="relative z-10 mb-4 flex items-center justify-between px-1 sm:px-2">
+        <div>
+          <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">
+            Equipo core
+          </p>
+          <p className="mt-1 text-sm text-slate-300">
+            Conoce a las personas detrás de la comunidad.
+          </p>
+        </div>
+      </div>
 
       <div
         ref={trackRef}
-        className="no-scrollbar overflow-x-auto flex gap-6 px-4 snap-x snap-mandatory items-stretch"
+        className="no-scrollbar relative z-10 flex snap-x snap-mandatory items-stretch gap-6 overflow-x-auto px-4"
       >
         {data.map((m, i) => {
           return (
@@ -86,7 +99,7 @@ export default function TeamCarousel() {
                 <div
 
                   className={`card-animated-border transition-transform duration-500 group-hover:-translate-y-1 ${
-                    i === idx ? "scale-[1.01]" : "scale-[0.99]"
+                    i === idx ? "scale-[1.01]" : "scale-[0.995]"
                   }`}
                   style={{ animationDelay: `${(i % 5) * 150}ms` as any }}
                 >
@@ -128,31 +141,31 @@ export default function TeamCarousel() {
         })}
       </div>
 
-      <div className="pointer-events-none absolute inset-0 flex items-center justify-between px-2">
+      <div className="pointer-events-none absolute inset-0 z-20 flex items-center justify-between px-2 sm:px-3">
         <button
           onClick={() => step("prev")}
-          className="pointer-events-auto rounded-full bg-white/10 backdrop-blur border border-white/15 p-1.5 text-white hover:bg-white/15"
+          className="pointer-events-auto flex h-8 w-8 items-center justify-center rounded-full border border-white/15 bg-white/10 text-sm text-white backdrop-blur transition hover:bg-white/15 sm:h-9 sm:w-9"
           aria-label="Anterior"
         >
           ‹
         </button>
         <button
           onClick={() => step("next")}
-          className="pointer-events-auto rounded-full bg-white/10 backdrop-blur border border-white/15 p-1.5 text-white hover:bg-white/15"
+          className="pointer-events-auto flex h-8 w-8 items-center justify-center rounded-full border border-white/15 bg-white/10 text-sm text-white backdrop-blur transition hover:bg-white/15 sm:h-9 sm:w-9"
           aria-label="Siguiente"
         >
           ›
         </button>
       </div>
 
-      <div className="mt-5 flex items-center justify-center gap-1.5">
+      <div className="relative z-10 mt-5 flex items-center justify-center gap-1.5">
         {data.map((_, i) => (
           <button
             key={i}
             onClick={() => setIdx(i)}
             aria-label={`Ir a ${i + 1}`}
             className={`h-1.5 rounded-full transition-all ${
-              i === idx ? "w-5 bg-white" : "w-2.5 bg-white/35"
+              i === idx ? "w-5 bg-primary" : "w-2.5 bg-white/35"
             }`}
           />
         ))}

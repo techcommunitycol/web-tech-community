@@ -1,6 +1,5 @@
 // src/features/calendar/ListView.tsx
 import React, { useMemo } from "react";
-import { EVENTS } from "./CalendarData";
 import {
   eventColor,
   type CalendarEvent,
@@ -14,6 +13,7 @@ interface ListViewProps {
   activeOwners: string[];
   activeFormatos: FormatoType[];
   searchQuery: string;
+  events: CalendarEvent[];
   onSelectEvent: (event: CalendarEvent) => void;
 }
 
@@ -23,6 +23,7 @@ const ListView: React.FC<ListViewProps> = ({
   activeOwners,
   activeFormatos,
   searchQuery,
+  events,
   onSelectEvent,
 }) => {
   const upcomingEvents = useMemo(() => {
@@ -34,7 +35,7 @@ const ListView: React.FC<ListViewProps> = ({
 
     const query = searchQuery.trim().toLowerCase();
 
-    return [...EVENTS]
+    return [...events]
       .filter((e) => {
         const d = new Date(e.date);
         const dMid = new Date(d.getFullYear(), d.getMonth(), d.getDate());
@@ -60,7 +61,7 @@ const ListView: React.FC<ListViewProps> = ({
         return haystack.includes(query);
       })
       .sort((a, b) => a.date.localeCompare(b.date));
-  }, [today, activeTypes, activeOwners, activeFormatos, searchQuery]);
+  }, [today, activeTypes, activeOwners, activeFormatos, searchQuery, events]);
 
   return (
     <div className="mt-4 space-y-4">

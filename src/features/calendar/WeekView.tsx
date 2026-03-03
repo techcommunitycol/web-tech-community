@@ -1,6 +1,4 @@
-// src/features/calendar/WeekView.tsx
 import React, { useMemo } from "react";
-import { EVENTS } from "./CalendarData";
 import {
   WEEK_DAYS,
   getEventsForDay,
@@ -19,6 +17,7 @@ interface WeekViewProps {
   activeOwners: string[];
   activeFormatos: FormatoType[];
   searchQuery: string;
+  events: CalendarEvent[];
   onSelectEvent: (event: CalendarEvent) => void;
 }
 
@@ -29,6 +28,7 @@ const WeekView: React.FC<WeekViewProps> = ({
   activeOwners,
   activeFormatos,
   searchQuery,
+  events,
   onSelectEvent,
 }) => {
   const weekDates = useMemo(() => {
@@ -59,7 +59,7 @@ const WeekView: React.FC<WeekViewProps> = ({
 
       <div className="grid grid-cols-7 gap-px bg-slate-900/60 rounded-xl overflow-hidden">
         {weekDates.map((date, idx) => {
-          const events = getEventsForDay(EVENTS, date).filter((e) => {
+          const dayEvents = getEventsForDay(events, date).filter((e) => {
             if (!activeTypes.includes(e.type)) return false;
             if (activeOwners.length && !activeOwners.includes(e.owner)) {
               return false;
@@ -99,19 +99,16 @@ const WeekView: React.FC<WeekViewProps> = ({
                 </span>
               </div>
               <div className="space-y-1 overflow-y-auto">
-                {events.map((event) => (
+                {dayEvents.map((event) => (
                   <button
                     key={event.id}
                     onClick={() => onSelectEvent(event)}
-                    className={`group flex w-full items-center rounded-full px-2 py-1 text-[10px] text-slate-50 ${eventColor(
-                      event.type
-                    )}`}
+                    className={`group flex w-full items-center rounded-full px-2 py-1 text-[10px] text-slate-50 font-semibold shadow-sm ${eventColor(event.type)}`}
                   >
-                    <span className="mr-1.5 inline-block h-1.5 w-1.5 rounded-full bg-slate-100" />
                     <span className="truncate">{event.title}</span>
                   </button>
                 ))}
-                {events.length === 0 && (
+                {dayEvents.length === 0 && (
                   <span className="text-[10px] text-slate-500">
                     Sin eventos
                   </span>

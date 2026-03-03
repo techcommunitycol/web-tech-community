@@ -1,6 +1,5 @@
 // src/features/calendar/MonthView.tsx
 import React, { useMemo } from "react";
-import { EVENTS } from "./CalendarData";
 import {
   WEEK_DAYS,
   getEventsForDay,
@@ -18,6 +17,7 @@ interface MonthViewProps {
   activeOwners: string[];
   activeFormatos: FormatoType[];
   searchQuery: string;
+  events: CalendarEvent[];
   onSelectEvent: (event: CalendarEvent) => void;
 }
 
@@ -28,6 +28,7 @@ const MonthView: React.FC<MonthViewProps> = ({
   activeOwners,
   activeFormatos,
   searchQuery,
+  events,
   onSelectEvent,
 }) => {
   const { days } = useMemo(() => {
@@ -68,7 +69,7 @@ const MonthView: React.FC<MonthViewProps> = ({
             );
           }
 
-          const events = getEventsForDay(EVENTS, date).filter((e) => {
+          const dayEvents = getEventsForDay(events, date).filter((e) => {
             // 1) tipo
             if (!activeTypes.includes(e.type)) return false;
 
@@ -106,8 +107,8 @@ const MonthView: React.FC<MonthViewProps> = ({
                 <span
                   className={`text-[11px] text-slate-300 ${
                     isTodayFlag
-                      ? "inline-flex h-5 w-5 items-center justify-center rounded-full bg-sky-600 text-[11px] font-semibold"
-                      : ""
+                    ? "inline-flex h-5 w-5 items-center justify-center rounded-full bg-[rgba(54,151,156,0.95)] text-[11px] font-semibold"
+                    : ""
                   }`}
                 >
                   {date.getDate()}
@@ -115,15 +116,12 @@ const MonthView: React.FC<MonthViewProps> = ({
               </div>
 
               <div className="space-y-1 overflow-y-auto">
-                {events.map((event) => (
+                {dayEvents.map((event) => (
                   <button
                     key={event.id}
                     onClick={() => onSelectEvent(event)}
-                    className={`group flex w-full items-center rounded-full px-2 py-1 text-[10px] text-slate-50 ${eventColor(
-                      event.type
-                    )}`}
+                    className={`group flex w-full items-center rounded-full px-2 py-1 text-[10px] text-slate-50 font-semibold shadow-sm ${eventColor(event.type)}`}
                   >
-                    <span className="mr-1.5 inline-block h-1.5 w-1.5 rounded-full bg-slate-100" />
                     <span className="truncate">{event.title}</span>
                   </button>
                 ))}
@@ -134,6 +132,6 @@ const MonthView: React.FC<MonthViewProps> = ({
       </div>
     </>
   );
-};
+}
 
 export default MonthView;
